@@ -18,6 +18,77 @@ public class Tavolo {
         }
     }
 
+    /** scanning winning mosses on row **/
+    public void scanWinMoveRow(int[][] x) {
+        int product = 1;
+        int row_win_move = 0;
+        int column_win_move = 0;
+
+        for (int i = 0; i < N_R; i++) {
+            for (int j = 0; j < N_C; j++) {
+
+                if (x[i][j] == 1) {
+                    row_win_move = i;
+                    column_win_move = j;
+                }
+
+                product *= x[i][j];
+
+                if (product == 9) {
+                    x[row_win_move][column_win_move] = 3;
+                }
+            }
+        }
+    }
+
+    /** scanning winning mosses on column **/
+    public void scanWinMoveColumn(int[][] x){
+        int product = 1;
+        int column_win_move = 0;
+        int row_win_move = 0;
+
+        for (int j = 0; j < N_C; j++){
+            for (int i = 0; i < N_R; i++){
+
+                if (x[j][i] == 1){
+                    row_win_move = j;
+                    column_win_move = i;
+                }
+
+                product *= x[j][i];
+
+                if (product == 9){
+                    x[row_win_move][column_win_move] = 3;
+                }
+            }
+        }
+    }
+
+    /** scanning winning mosses on diagonal **/
+    public void scanWinMoveDiagonal(int[][] x){
+        int product = 1;
+        int row_win_move = 0;
+        int column_win_move = 0;
+
+        for (int i = 0; i < N_R; i++){
+            for (int j = 0; j < N_C; j++){
+                if (i == j){
+
+                    if (x[i][j] == 1){
+                        row_win_move = i;
+                        column_win_move = j;
+                    }
+
+                    product *= x[i][j];
+
+                    if(product == 9){
+                        x[row_win_move][column_win_move] = 3;
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * Set point method
      * **/
@@ -30,8 +101,4 @@ public class Tavolo {
             }
         }catch(InvalidParameterException e){}
     }
-
-
-}
-
 }
