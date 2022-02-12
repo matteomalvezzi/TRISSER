@@ -19,7 +19,7 @@ public class Tavolo {
     }
 
     /** scanning winning mosses on row **/
-    public void scanWinMoveRow(int[][] x) {
+    public int[] winningMoveScanRow(int[][] x) {
         int product = 1;
         int row_win_move = 0;
         int column_win_move = 0;
@@ -35,14 +35,15 @@ public class Tavolo {
                 product *= x[i][j];
 
                 if (product == 9) {
-                    x[row_win_move][column_win_move] = 3;
+                    return new int[] {row_win_move, column_win_move};
                 }
             }
         }
+        return new int[] {-1, -1};
     }
 
     /** scanning winning mosses on column **/
-    public void scanWinMoveColumn(int[][] x){
+    public int[] winningMoveScanColumn(int[][] x){
         int product = 1;
         int column_win_move = 0;
         int row_win_move = 0;
@@ -58,14 +59,15 @@ public class Tavolo {
                 product *= x[j][i];
 
                 if (product == 9){
-                    x[row_win_move][column_win_move] = 3;
+                    return new int[] {row_win_move, column_win_move};
                 }
             }
         }
+        return new int[] {-1, -1};
     }
 
     /** scanning winning mosses on diagonal **/
-    public void scanWinMoveDiagonal(int[][] x){
+    public int[] winningMoveScanDiagonal(int[][] x){
         int product = 1;
         int row_win_move = 0;
         int column_win_move = 0;
@@ -82,11 +84,19 @@ public class Tavolo {
                     product *= x[i][j];
 
                     if(product == 9){
-                        x[row_win_move][column_win_move] = 3;
+                        return new int[] {-1, -1};
                     }
                 }
             }
         }
+        return new int[] {-1, -1};
+    }
+
+
+    //Partiamo noi funzioni
+    public void tryL(int[][] x, int mossa_1_i){
+        int[][] mossa_1 = { {0, 0}, {0, 2}, {2, 2}, {2, 0} };
+
     }
 
     /**
