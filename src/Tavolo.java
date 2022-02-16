@@ -1,92 +1,148 @@
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
+
+// metodi di controllo per l'esecuzione di mosse vincenti/bloccanti
 
 public class Tavolo {
 
     /** attribute **/
-    public static final int N_R = 3;
-    public static final int N_C = 3;
+    public static final int N_C = 3; // cells number
     private int[][] table;
 
     /** constructor **/
     public Tavolo() {
-        this.table = new int[N_R][N_C];
-        for(int i = 0; i < N_R; i++) {
+        this.table = new int[N_C][N_C];
+        for(int i = 0; i < N_C; i++) {
             for(int j = 0; j < N_C; j++){
                 this.table[i][j] = 1;
             }
         }
     }
 
-    /** scanning winning mosses on row **/
-    public void scanWinMoveRow(int[][] x) {
-        int product = 1;
-        int row_win_move = 0;
-        int column_win_move = 0;
+    /** metodo che esegue tutti i controlli vincenti sulla matrice **/
+    public int[] winningMove(int[][] x){
 
-        for (int i = 0; i < N_R; i++) {
+        int[] result;
+
+        result = scanRowColumn(x, true, true);
+        if(result[0] != -1){
+            return result;
+        }
+
+        result = scanRowColumn(x, true, false);
+        if(result[0] != -1){
+            return result;
+        }
+
+        return scanDiagonal(x, true);
+    }
+
+    /** metodo che esegue tutti i controlli bloccanti sulla matrice **/
+    public int[] losingMove(int [][] x){
+
+        int[] result;
+
+        result = scanRowColumn(x, false, true);
+        if(result[0] != -1){
+            return result;
+        }
+
+        result = scanRowColumn(x, false, false);
+        if(result[0] != -1){
+            return result;
+        }
+
+        return scanDiagonal(x, false);
+    }
+
+    /** scan winning or losing move on row and column **/
+    public int[] scanRowColumn(int[][] x, boolean is_X, boolean is_row) { // matrice, mossa vincente o bloccante, controllo riga o colonna
+        int product = 1;
+        int row_move;
+        int column_move;
+        int winning_count = 9;
+        boolean flag;
+
+        if(!is_X){
+            winning_count = 25;
+        }
+
+        for (int i = 0; i < N_C; i++) {
+            product = 1;
+            flag = false;
             for (int j = 0; j < N_C; j++) {
-
-                if (x[i][j] == 1) {
-                    row_win_move = i;
-                    column_win_move = j;
+                row_move = i;
+                column_move = j;
+                if (!is_row){
+                    row_move = j;
+                    column_move = i;
                 }
 
-                product *= x[i][j];
-
-                if (product == 9) {
-                    x[row_win_move][column_win_move] = 3;
-                }
-            }
-        }
-    }
-
-    /** scanning winning mosses on column **/
-    public void scanWinMoveColumn(int[][] x){
-        int product = 1;
-        int column_win_move = 0;
-        int row_win_move = 0;
-
-        for (int j = 0; j < N_C; j++){
-            for (int i = 0; i < N_R; i++){
-
-                if (x[j][i] == 1){
-                    row_win_move = j;
-                    column_win_move = i;
+                if (x[row_move][column_move] == 1) {
+                    flag = true;
                 }
 
-                product *= x[j][i];
+                product *= x[row_move][column_move];
 
-                if (product == 9){
-                    x[row_win_move][column_win_move] = 3;
+                if (product == winning_count && flag) {
+                    return new int[]{row_move, column_move};
                 }
             }
         }
+        return new int[] {-1, -1};
     }
 
-    /** scanning winning mosses on diagonal **/
-    public void scanWinMoveDiagonal(int[][] x){
+    /** scan winning or losing move on diagonal **/
+    public int[] scanDiagonal(int[][] x, boolean is_X){
         int product = 1;
         int row_win_move = 0;
         int column_win_move = 0;
+        int winning_count = 9;
+        boolean flag = false;
 
-        for (int i = 0; i < N_R; i++){
-            for (int j = 0; j < N_C; j++){
-                if (i == j){
+        if(!is_X){
+            winning_count = 25;
+        }
 
-                    if (x[i][j] == 1){
-                        row_win_move = i;
-                        column_win_move = j;
-                    }
+        for (int i = 0; i < N_C ; i++) {
 
-                    product *= x[i][j];
+            if (x[i][i] == 1) {
+                row_win_move = i;
+                column_win_move = i;
+                flag = true;
+            }
 
-                    if(product == 9){
-                        x[row_win_move][column_win_move] = 3;
-                    }
-                }
+            product *= x[i][i];
+
+            if(product == winning_count && flag){
+                return new int[] {row_win_move, column_win_move};
             }
         }
+
+        product = 1;
+        flag = false;
+
+        for (int i = 0; i < N_C; i++){
+
+            if (x[N_C-i-1][i] == 1){
+                row_win_move = N_C-i-1;
+                column_win_move = i;
+                flag = true;
+            }
+
+            product *= x[N_C-i-1][i];
+
+            if(product == winning_count && flag){
+                return new int[] {row_win_move, column_win_move};
+            }
+        }
+
+        return new int[] {-1, -1};
+    }
+
+    //Partiamo noi funzioni
+    public void tryL(int[][] x, int mossa_1_i){
+        int[][] mossa_1 = { {0, 0}, {0, 2}, {2, 2}, {2, 0} };
+
     }
 
     /**
