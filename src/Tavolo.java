@@ -18,6 +18,8 @@ public class Tavolo {
         }
     }
 
+    /*** ---------------  Check winning and losing method  ------------------***/
+
     /** metodo che esegue tutti i controlli vincenti sulla matrice **/
     public int[] winningMove(int[][] x){
 
@@ -53,6 +55,8 @@ public class Tavolo {
 
         return scanDiagonal(x, false);
     }
+
+    /*** ---------------  Scanning Method ------------------***/
 
     /** scan winning or losing move on row and column **/
     public int[] scanRowColumn(int[][] x, boolean is_X, boolean is_row) { // matrice, mossa vincente o bloccante, controllo riga o colonna
@@ -139,15 +143,11 @@ public class Tavolo {
         return new int[] {-1, -1};
     }
 
-    //Partiamo noi funzioni
-    public void tryL(int[][] x, int mossa_1_i){
-        int[][] mossa_1 = { {0, 0}, {0, 2}, {2, 2}, {2, 0} };
 
-    }
 
-    /**
-     * Set point method
-     * **/
+    /*** ---------------  Set/View Point ------------------***/
+
+    /** set point **/
     public void setPoint(int r, int c, int point){
         try{
             if(point == 3 || point == 5 || point == 1){
@@ -156,5 +156,29 @@ public class Tavolo {
                 throw new InvalidParameterException();
             }
         }catch(InvalidParameterException e){}
+    }
+
+    /** set point **/
+    public int getPoint(int r, int c){
+        try{
+            if(r >= 0 && r <= 2 && c >= 0 && c <= 2){
+                return this.table[r][c];
+            }else{
+                throw new InvalidParameterException();
+            }
+        }catch(InvalidParameterException e){ return -1;}
+    }
+
+
+    /*** ---------------  Show table ------------------***/
+
+    public void showTable(){
+        for(int i = 0; i < N_C; i++) {
+            for(int j = 0; j < N_C; j++){
+                System.out.printf(String.valueOf(this.table[i][j]) + " | ");
+            }
+            System.out.println("");
+            System.out.println("----------");
+        }
     }
 }
