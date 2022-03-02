@@ -1,18 +1,21 @@
-public class Main {
+import java.util.ArrayList;
 
-    public static int[][] matrice_row = { {1, 5, 1}, {3, 3, 1}, {1, 1, 1} };
-    public static int[][] matrice_column = { {3, 3, 5}, {1, 1, 5}, {1, 1, 1} };
-    public static int[][] matrice_primary_diagonal = { {3, 1, 5}, {5, 3, 1}, {1, 1, 1} };
-    public static int[][] matrice_secondary_diagonal = { {1, 5, 3}, {5, 3, 1}, {1, 1, 1} };
+public class Main {
 
     public static void main(String[] args) {
 
         Tavolo t = new Tavolo();
+        Game current_game = new Game(t);
 
-//        int[] result = t.scanRowColumn(matrice_column, false, false);
-//
-//        for (int i=0; i<2; i++){
-//            System.out.println(result[i]);
-//        }
+        current_game.table.setPoint(1, 1, 3);
+        current_game.table.setPoint(2, 1, 5);
+
+        ArrayList<ArrayList<Integer>> liberi= current_game.getFreePoint(current_game.table);
+
+        System.out.println(liberi);
+
+        ArrayList<Integer> randomici = current_game.generateRandomPoint(liberi);
+
+        System.out.println(randomici);
     }
 }

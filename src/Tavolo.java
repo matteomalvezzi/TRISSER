@@ -1,7 +1,5 @@
 import java.security.InvalidParameterException;
 
-// metodi di controllo per l'esecuzione di mosse vincenti/bloccanti
-
 public class Tavolo {
 
     /** attribute **/
