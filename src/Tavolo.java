@@ -1,4 +1,5 @@
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 
 public class Tavolo {
 
@@ -156,7 +157,7 @@ public class Tavolo {
         }catch(InvalidParameterException e){}
     }
 
-    /** set point **/
+    /** get point **/
     public int getPoint(int r, int c){
         try{
             if(r >= 0 && r <= 2 && c >= 0 && c <= 2){
@@ -179,4 +180,26 @@ public class Tavolo {
             System.out.println("----------");
         }
     }
+
+    /*** ---------------  get Row Product and Column Product ------------------***/
+
+    public int rowProduct(int r ){
+        int product = 1;
+        for(int i = 0; i < 3; i++){
+            int value_of_point = table[r][i];
+            product*= value_of_point;
+        }
+        return product;
+    }
+
+    public int columnProduct(int c ){
+        int product = 1;
+        for(int i = 0; i < 3; i++){
+            int value_of_point = table[i][c];
+            product*= value_of_point;
+        }
+        return product;
+    }
+
+
 }

@@ -7,15 +7,24 @@ public class Main {
         Tavolo t = new Tavolo();
         Game current_game = new Game(t);
 
-        current_game.table.setPoint(1, 1, 3);
-        current_game.table.setPoint(2, 1, 5);
+        current_game.table.setPoint(0, 0, 3);
+        current_game.table.setPoint(1, 0, 5);
+        current_game.table.setPoint(0, 2, 3);
+        current_game.table.setPoint(0, 1, 5);
 
-        ArrayList<ArrayList<Integer>> liberi= current_game.getFreePoint(current_game.table);
+        ArrayList<int[]> liberi= current_game.getFreePoint();
 
-        System.out.println(liberi);
+        for (int[] ints : liberi) {
+            for (int anInt : ints) {
+                System.out.print(anInt);
+            }
+            System.out.println("");
+        }
 
-        ArrayList<Integer> randomici = current_game.generateRandomPoint(liberi);
+        current_game.table.showTable();
 
-        System.out.println(randomici);
+        System.out.println(current_game.table.rowProduct(0));
+        System.out.println(current_game.table.columnProduct(0));
+
     }
 }
