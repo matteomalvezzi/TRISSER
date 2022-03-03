@@ -64,6 +64,8 @@ public class Tavolo {
         int product = 1;
         int row_move;
         int column_move;
+        int good_row = 0;
+        int good_column = 0;
         int winning_count = 9;
         boolean flag;
 
@@ -84,12 +86,14 @@ public class Tavolo {
 
                 if (x[row_move][column_move] == 1) {
                     flag = true;
+                    good_row = row_move;
+                    good_column = column_move;
                 }
 
                 product *= x[row_move][column_move];
 
                 if (product == winning_count && flag) {
-                    return new int[]{row_move, column_move};
+                    return new int[]{good_row, good_column};
                 }
             }
         }
@@ -99,8 +103,8 @@ public class Tavolo {
     /** scan winning or losing move on diagonal **/
     public int[] scanDiagonal(int[][] x, boolean is_X){
         int product = 1;
-        int row_win_move = 0;
-        int column_win_move = 0;
+        int row_move = 0;
+        int column_move = 0;
         int winning_count = 9;
         boolean flag = false;
 
@@ -111,15 +115,15 @@ public class Tavolo {
         for (int i = 0; i < N_C ; i++) {
 
             if (x[i][i] == 1) {
-                row_win_move = i;
-                column_win_move = i;
+                row_move = i;
+                column_move = i;
                 flag = true;
             }
 
             product *= x[i][i];
 
             if(product == winning_count && flag){
-                return new int[] {row_win_move, column_win_move};
+                return new int[] {row_move, column_move};
             }
         }
 
@@ -129,15 +133,15 @@ public class Tavolo {
         for (int i = 0; i < N_C; i++){
 
             if (x[N_C-i-1][i] == 1){
-                row_win_move = N_C-i-1;
-                column_win_move = i;
+                row_move = N_C-i-1;
+                column_move = i;
                 flag = true;
             }
 
             product *= x[N_C-i-1][i];
 
             if(product == winning_count && flag){
-                return new int[] {row_win_move, column_win_move};
+                return new int[] {row_move, column_move};
             }
         }
 
