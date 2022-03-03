@@ -11,6 +11,11 @@ public class Game {
 
     /** ------------------------------------ Attributi ------------------------------------ **/
     public Tavolo table;
+    public ArrayList<int[]> enemy_move;
+    public ArrayList<int[]> my_move;
+    public boolean whoStart; //true parto io false parte lui
+
+    int ng;
 
     /** ------------------------------------ Constructor ------------------------------------ **/
 
@@ -20,11 +25,81 @@ public class Game {
      * @param current_table il tavolo precedentemente creato
      * @see Tavolo
      * **/
-    public Game(Tavolo current_table) {
+    public Game(Tavolo current_table, boolean wS) {
+        my_move = new ArrayList<>();
+        enemy_move = new ArrayList<>();
+
+        int ng = 0;
+        this.whoStart = wS;
         this.table = current_table;
     }
 
-    /** ------------------------------------ Methods ------------------------------------ **/
+    /** ------------------------------------ Gaming Methods ------------------------------------ **/
+    public int[] playGamePN(int idx_t, int[] enemy){
+        int[] pwm;
+        int[] plm;
+        switch (idx_t){
+            /** ---- Risposta numero 1---- **/
+            case 1:
+                return mossa1_PN();
+
+            /** ---- Risposta numero 2---- **/
+            case 2:
+                return mossa2_PN(enemy_move.get(0), my_move.get(0));
+
+            /** ---- Risposta numero 3---- **/
+            case 3:
+                pwm = this.table.winningMove(); //possibile winning move
+                if(pwm!=null){return pwm; }
+                plm = this.table.losingMove();  //possible losing move
+                if(plm!=null){return plm; }
+
+                return mossa3_PN(enemy_move.get(1));
+            /** ---- Risposta numero 4-5 ---- **/
+            case 4:
+
+            case 5:
+                pwm = this.table.winningMove(); //possibile winning move
+                if(pwm!=null){return pwm; }
+                plm = this.table.losingMove();  //possible losing move
+                if(plm!=null){return plm; }
+
+                return generateRandomPoint(getFreePoint());
+
+            default:
+                return null;
+        }
+    }
+
+    public int[] playGamePL(int idx_t, int[] enemy){
+        switch (idx_t){
+            /** ---- Risposta numero 1---- **/
+            case 1:
+                int[][] next_move = mossa1_PL(enemy);
+                this.ng = next_move[0][1];
+                return next_move[1];
+
+            /** ---- Risposta numero 2---- **/
+            case 2:
+
+
+
+            default:
+                return null;
+        }
+    }
+
+
+    public void setEnemyPoint(int[] p){
+        this.enemy_move.add(p);
+        this.table.setPoint(p[0], p[1],5);
+    }
+    public void setMyPoint(int[] p){
+        this.my_move.add(p);
+        this.table.setPoint(p[0], p[1],3);
+    }
+
+    /** ------------------------------------ Pilot Methods ------------------------------------ **/
 
     /**
      * ifEqualPoint
@@ -214,12 +289,12 @@ public class Game {
      * @param mossa_1 prima mossa che abbiamo fatto noi
      * @return lo sviluppo della gerarchia e il punto da mettere
      */
-    public int[][] mossa2_PN(int[] enemy_point_1,  int[] mossa_1){
+    public int[] mossa2_PN(int[] enemy_point_1,  int[] mossa_1){
 
         if(enemy_point_1[0] == 1 && enemy_point_1[1] == 1){
-            return new int[][]{ {0, 0}, getOppositeCorner(mossa_1) };
+            return getOppositeCorner(mossa_1);
         }else {
-            return new int[][]{ {3, 0}, getAdjacentFreeCorner(mossa_1) };
+            return getAdjacentFreeCorner(mossa_1);
         }
     }
 
@@ -229,13 +304,12 @@ public class Game {
      * @param enemy_point_2 mossa avversaria due
      * @return lo sviluppo della gerarchia e il punto da mettere
      */
-    public int[][] mossa3_PN(int[] enemy_point_2){
+    public int[] mossa3_PN(int[] enemy_point_2){
 
         if( this.table.rowProduct(enemy_point_2[0]) == 15 || this.table.columnProduct(enemy_point_2[1]) == 15 ){
-            System.out.println("ME LO HA MESSO NELL'ADIACENTE al secondo");
-            return new int[][]{ {0, 0}, getOppositeCorner(enemy_point_2) };
+            return getOppositeCorner(enemy_point_2);
         }else{
-            return new int[][]{ {0, 0}, getAdjacentFreeCorner(enemy_point_2) };
+            return getAdjacentFreeCorner(enemy_point_2);
         }
 
     }

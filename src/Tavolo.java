@@ -20,17 +20,18 @@ public class Tavolo {
     /*** ---------------  Check winning and losing method  ------------------***/
 
     /** metodo che esegue tutti i controlli vincenti sulla matrice **/
-    public int[] winningMove(int[][] x){
+    public int[] winningMove(){
+        int[][] x = this.table;
 
         int[] result;
 
         result = scanRowColumn(x, true, true);
-        if(result[0] != -1){
+        if(result != null){
             return result;
         }
 
         result = scanRowColumn(x, true, false);
-        if(result[0] != -1){
+        if(result != null){
             return result;
         }
 
@@ -38,17 +39,18 @@ public class Tavolo {
     }
 
     /** metodo che esegue tutti i controlli bloccanti sulla matrice **/
-    public int[] losingMove(int [][] x){
+    public int[] losingMove(){
+        int[][] x = this.table;
 
         int[] result;
 
         result = scanRowColumn(x, false, true);
-        if(result[0] != -1){
+        if(result != null){
             return result;
         }
 
         result = scanRowColumn(x, false, false);
-        if(result[0] != -1){
+        if(result != null){
             return result;
         }
 
@@ -91,7 +93,7 @@ public class Tavolo {
                 }
             }
         }
-        return new int[] {-1, -1};
+        return null;
     }
 
     /** scan winning or losing move on diagonal **/
@@ -139,7 +141,7 @@ public class Tavolo {
             }
         }
 
-        return new int[] {-1, -1};
+        return null;
     }
 
 
@@ -175,6 +177,22 @@ public class Tavolo {
         for(int i = 0; i < N_C; i++) {
             for(int j = 0; j < N_C; j++){
                 System.out.printf(String.valueOf(this.table[i][j]) + " | ");
+            }
+            System.out.println("");
+            System.out.println("----------");
+        }
+    }
+
+    public void showRealTable(){
+        for(int i = 0; i < N_C; i++) {
+            for(int j = 0; j < N_C; j++){
+                if(this.table[i][j] == 3){
+                    System.out.printf("X | ");
+                }else if(this.table[i][j] == 5){
+                    System.out.printf("O | ");
+                }else{
+                    System.out.printf("  | ");
+                }
             }
             System.out.println("");
             System.out.println("----------");
