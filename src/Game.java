@@ -40,6 +40,20 @@ public class Game {
     }
 
     /**
+     * ifCorner
+     * restituisce se è un corner o no
+     */
+    public static boolean ifCorner(int[] point){
+        int[][] corner_int = { {0, 0}, {0, 2}, {2, 0}, {2, 2} };
+
+        ArrayList<int[]> corner = new ArrayList<>(Arrays.asList(corner_int));
+
+        for (int[] aCorner : corner) {
+            if(point[0] == aCorner[0] && point[1] == aCorner[1]){ return true; }
+        }return false;
+    }
+
+    /**
      * getFreePoint
      * Questo metodo restituisce le caselle libere di un tavolo
      * @return il metodo restituisce una ArrayList di ArrayList gli arrayList interni contengono sempre due valori, ovvero le cordinate xy della casella libera
@@ -180,14 +194,35 @@ public class Game {
      * Pilotaggio mossa 3
      * @return lo sviluppo della gerarchia e il punto da mettere
      */
-    public int[][] mossa3_PN(int[] mossa_1){
+    public int[][] mossa3_PN(int[] mossa_2){
 
-        if( this.table.rowProduct(mossa_1[0]) == 15 || this.table.columnProduct(mossa_1[1]) == 15 ){
-            System.out.println("ME LO HA MESSO NELL'ADIACENTE LO METTO NELL'OPPOSTO AL PRIMO ");
-            return new int[][]{ {0, 0}, getAdjacentFreeCorner(mossa_1) };
+        if( this.table.rowProduct(mossa_2[0]) == 15 || this.table.columnProduct(mossa_2[1]) == 15 ){
+            System.out.println("ME LO HA MESSO NELL'ADIACENTE al secondo");
+            return new int[][]{ {0, 0}, getOppositeCorner(mossa_2) };
         }else{
-            return new int[][]{ {0, 0}, getOppositeCorner(mossa_1) };
+            return new int[][]{ {0, 0}, getAdjacentFreeCorner(mossa_2) };
         }
 
     }
+
+    /** ------------------------------------ Funzioni pilota mosse se parte l'avversario ------------------------------------ **/
+    /**
+     * mossa1_PL
+     * Pilotaggio mossa 1
+     * @return il punto da mettere
+     */
+    public int[][] mossa1_PL(int[] enemy_point){
+
+        if(enemy_point[0] == 1 && enemy_point[1] == 1){
+            return new int[][]{ { 1, 0 }, generateRandomPoint(getFreeCorner())};
+        }else if(ifCorner(enemy_point)){
+            return new int[][]{ { 1, 1 }, new int[]{ 1, 1,} };
+        }else{
+            return new int[][]{ { 1, 2 }, new int[]{ 1, 1,} };
+        }
+    }
+
+
+
+
 }
