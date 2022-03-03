@@ -27,6 +27,17 @@ public class Game {
     /** ------------------------------------ Methods ------------------------------------ **/
 
     /**
+     * ifEqualPoint
+     * Restituisce true se due punti sono uguali
+     * @param a1 primo point
+     * @param a2 secondo point
+     * @return true if points are equal
+     */
+    public boolean ifEqualPoint(int[] a1, int[] a2){
+        return (a1[0] == a2[0] && a1[1] == a2[1]);
+    }
+
+    /**
      * showSetOfPoint
      * Mostra un insieme di punti
      */
@@ -91,6 +102,27 @@ public class Game {
             }
         }
         return free_corner;
+    }
+    /**
+     * getFreeCentralZone
+     * Questo metodo restituisce i punti non angoli non centro
+     * @return l'insieme dei punti che non sono ne il centro ne gli angoli liberi
+     */
+    public ArrayList<int[]> getFreeCentralZone(){
+        ArrayList<int[]> fp = this.getFreePoint();
+
+        int[][] central_int = { {0, 1}, {1, 0}, {1, 2}, {2, 1} };
+
+        ArrayList<int[]> central = new ArrayList<>(Arrays.asList(central_int));
+
+        ArrayList<int[]> free_central = new ArrayList<>();
+
+        for (int[] aFree : fp) {
+            for (int[] aCentral : central) {
+                if(ifEqualPoint(aFree, aCentral)){ free_central.add(aCentral); }
+            }
+        }
+        return free_central;
     }
 
     /**
@@ -208,7 +240,7 @@ public class Game {
     /** ------------------------------------ Funzioni pilota mosse se parte l'avversario ------------------------------------ **/
     /**
      * mossa1_PL
-     * Pilotaggio mossa 1
+     * Pilotaggio mossa 1 nel caso in cui partono loro
      * @return il punto da mettere
      */
     public int[][] mossa1_PL(int[] enemy_point){
@@ -216,13 +248,88 @@ public class Game {
         if(enemy_point[0] == 1 && enemy_point[1] == 1){
             return new int[][]{ { 1, 0 }, generateRandomPoint(getFreeCorner())};
         }else if(ifCorner(enemy_point)){
+            System.out.println("CORNER");
             return new int[][]{ { 1, 1 }, new int[]{ 1, 1,} };
         }else{
+            System.out.println("NOT CENTER NOT CORNER");
             return new int[][]{ { 1, 2 }, new int[]{ 1, 1,} };
         }
     }
 
 
+    /**
+     * mossa2_0_PL
+     * Pilotaggio mossa 2 nel caso in cui partono loro (Tale metodo parte se la prima mossa è al centro)
+     * @return il punto da mettere
+     */
+    public int[][] mossa2_0_PL(int[] mossa_1, int[] enemy_point){
+        int[] opposite_of_mine = getOppositeCorner(mossa_1);
 
+        if(ifEqualPoint(enemy_point, opposite_of_mine)){
+            return new int[][]{ { 0, 1 }, generateRandomPoint(getFreeCorner()) };
+        }else{
+            return new int[][]{ { 0, 0 }, generateRandomPoint(getFreePoint()) };
+        }
+    }
+
+    /**
+     * mossa2_1_PL
+     * Pilotaggio mossa 2 nel caso in cui partono loro (Tale metodo parte se la prima mossa è in un angolo)
+     * @return il punto da mettere
+     */
+    public int[][] mossa2_1_PL(int[] enemey_point){
+        int[] opposite_of_your = getOppositeCorner(enemey_point);
+
+        if(ifEqualPoint(enemey_point, opposite_of_your)){
+            return new int[][]{ {1, 0}, generateRandomPoint(getFreeCentralZone()) };
+        }else{
+            return new int[][]{ {1, 1}, generateRandomPoint(getFreeCorner()) };
+        }
+    }
+
+    /**
+     * mossa2_2_PL
+     * Pilotaggio mossa 2 nel caso in cui partono loro (Tale metodo parte se la prima mossa non è ne al centro ne in un angolo)
+     * @return il punto da mettere
+     */
+    public int[][] mossa2_2_PL(int[] enemy_point){
+
+        if(ifCorner(enemy_point)){
+
+            int prodotto_riga_1 = this.table.rowProduct(1);
+            int prodotto_colonna_1 = this.table.columnProduct(1);
+
+            if(prodotto_riga_1 != 15 && prodotto_colonna_1 == 15 ){
+                //Libera la riga
+                ArrayList<int[]> central_of_row = new ArrayList<>();
+                central_of_row.add( new int[]{1, 0});
+                central_of_row.add( new int[]{1, 2});
+
+                return new int[][]{ {2, 0}, generateRandomPoint(central_of_row) };
+            }else{
+                //Libera la colonna
+                ArrayList<int[]> central_of_column = new ArrayList<>();
+                central_of_column.add( new int[]{0, 1});
+                central_of_column.add( new int[]{2, 1});
+
+                return new int[][]{ {2, 0}, generateRandomPoint(central_of_column) };
+            }
+
+        }else{
+            //is lato
+
+            ArrayList<int[]> free_corner = getFreeCorner();
+
+            ArrayList<int[]> good_corner = new ArrayList<>();
+
+            for (int[] aCorner : free_corner) {
+                if(table.rowProduct(aCorner[0]) != 1 && table.columnProduct(aCorner[1]) != 1 ){
+                    good_corner.add(aCorner);
+                }
+            }
+
+            return new int[][]{ {2, 1}, generateRandomPoint(good_corner) };
+        }
+    }
 
 }
