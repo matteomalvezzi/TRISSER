@@ -25,6 +25,7 @@ public class Main {
 //            System.out.print(i);
 //        }
 
+
         //Mettiamo che partiamo noi
         int[] ma;
         Tavolo t = new Tavolo();
@@ -55,6 +56,8 @@ public class Main {
         doGamePN(current_game, 4, ma);
 
         current_game.table.showRealTable();
+
+        ma = current_game.generateRandomPoint(current_game.getFreePoint());
         System.out.println("--------- L'AVVERSARIO RISPONDE IN :" + ma[0] + "-" + ma[1] + "------");
 
         doGamePN(current_game, 5, null);
@@ -64,8 +67,8 @@ public class Main {
     }
 
     /**
-     * doGame
-     * Funzione che mi svolge un game:
+     * doGamePM
+     * Funzione che mi svolge un game nella quale partiamo noi:
      * Un game è un processo composto da 3 fasi:
      *      -Setto all'interno del game corrente la mossa avversaria
      *      -Elaboro la prossima mossa da eseguire
@@ -84,6 +87,18 @@ public class Main {
 
     }
 
+    /**
+     * doGamePL
+     * Funzione che mi svolge un game nella quale partiamo loro:
+     * Un game è un processo composto da 3 fasi:
+     *      -Setto all'interno del game corrente la mossa avversaria
+     *      -Elaboro la prossima mossa da eseguire
+     *      -Setto all'interno del game la nuova mossa elaborata
+     * @param my_game il game su cui fare la mossa
+     * @param idx_game l'indice a cui è il game. Ogni passaggio di indice corrisponde ad un invio di una mossa
+     * @param enemy_move la mossa avversaria (Nel caso in cui partiamo noi l'indice è 1 e la mossa avversaria è null)
+     * @see Game
+     * **/
     public static void doGamePL(Game my_game, int idx_game, int[] enemy_move){
 
         my_game.setEnemyPoint(enemy_move);

@@ -50,11 +50,11 @@ public class Game {
             /** ---- Risposta numero 3---- **/
             case 3:
                 pwm = this.table.winningMove(); //possibile winning move
-                if(pwm!=null){return pwm; }
+                if(pwm!=null){ System.out.println("HO VINTO"); return pwm;}
                 plm = this.table.losingMove();  //possible losing move
-                if(plm!=null){return plm; }
+                if(plm!=null){ System.out.println("HO PERSO"); return plm; }
 
-                return mossa3_PN(enemy_move.get(1));
+                return mossa3_PN(my_move.get(0));
             /** ---- Risposta numero 4-5 ---- **/
             case 4:
 
@@ -301,15 +301,17 @@ public class Game {
     /**
      * mossa3_PN
      * Pilotaggio mossa 3
-     * @param enemy_point_2 mossa avversaria due
+     * @param mossa_1 prima mossa che abbiamo fatto noi
      * @return lo sviluppo della gerarchia e il punto da mettere
      */
-    public int[] mossa3_PN(int[] enemy_point_2){
+    public int[] mossa3_PN(int[] mossa_1){
 
-        if( this.table.rowProduct(enemy_point_2[0]) == 15 || this.table.columnProduct(enemy_point_2[1]) == 15 ){
-            return getOppositeCorner(enemy_point_2);
+        if( this.table.rowProduct(mossa_1[0]) == 15 || this.table.columnProduct(mossa_1[1]) == 15 ){
+            System.out.println("Entra qui");
+            return getOppositeCorner(mossa_1);
         }else{
-            return getAdjacentFreeCorner(enemy_point_2);
+            System.out.println("Entra la");
+            return getAdjacentFreeCorner(mossa_1);
         }
 
     }

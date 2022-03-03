@@ -152,7 +152,9 @@ public class Tavolo {
 
     /*** ---------------  Set/View Point ------------------***/
 
-    /** set point **/
+    /** set point
+     * TODO mettere controllo per evitare che vengano settati punti gia occupati
+     * **/
     public void setPoint(int r, int c, int point){
         try{
             if(point == 3 || point == 5 || point == 1){
