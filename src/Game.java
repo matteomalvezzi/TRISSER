@@ -210,11 +210,13 @@ public class Game {
     /**
      * mossa2_PN
      * Pilotaggio mossa 2
+     * @param enemy_point_1 prima mossa avversario
+     * @param mossa_1 prima mossa che abbiamo fatto noi
      * @return lo sviluppo della gerarchia e il punto da mettere
      */
-    public int[][] mossa2_PN(int[] enemy_point,  int[] mossa_1){
+    public int[][] mossa2_PN(int[] enemy_point_1,  int[] mossa_1){
 
-        if(enemy_point[0] == 1 && enemy_point[1] == 1){
+        if(enemy_point_1[0] == 1 && enemy_point_1[1] == 1){
             return new int[][]{ {0, 0}, getOppositeCorner(mossa_1) };
         }else {
             return new int[][]{ {3, 0}, getAdjacentFreeCorner(mossa_1) };
@@ -224,15 +226,16 @@ public class Game {
     /**
      * mossa3_PN
      * Pilotaggio mossa 3
+     * @param enemy_point_2 mossa avversaria due
      * @return lo sviluppo della gerarchia e il punto da mettere
      */
-    public int[][] mossa3_PN(int[] mossa_2){
+    public int[][] mossa3_PN(int[] enemy_point_2){
 
-        if( this.table.rowProduct(mossa_2[0]) == 15 || this.table.columnProduct(mossa_2[1]) == 15 ){
+        if( this.table.rowProduct(enemy_point_2[0]) == 15 || this.table.columnProduct(enemy_point_2[1]) == 15 ){
             System.out.println("ME LO HA MESSO NELL'ADIACENTE al secondo");
-            return new int[][]{ {0, 0}, getOppositeCorner(mossa_2) };
+            return new int[][]{ {0, 0}, getOppositeCorner(enemy_point_2) };
         }else{
-            return new int[][]{ {0, 0}, getAdjacentFreeCorner(mossa_2) };
+            return new int[][]{ {0, 0}, getAdjacentFreeCorner(enemy_point_2) };
         }
 
     }
@@ -241,13 +244,14 @@ public class Game {
     /**
      * mossa1_PL
      * Pilotaggio mossa 1 nel caso in cui partono loro
+     * @param enemy_point_1 prima mossa avversario
      * @return il punto da mettere
      */
-    public int[][] mossa1_PL(int[] enemy_point){
+    public int[][] mossa1_PL(int[] enemy_point_1){
 
-        if(enemy_point[0] == 1 && enemy_point[1] == 1){
+        if(enemy_point_1[0] == 1 && enemy_point_1[1] == 1){
             return new int[][]{ { 1, 0 }, generateRandomPoint(getFreeCorner())};
-        }else if(ifCorner(enemy_point)){
+        }else if(ifCorner(enemy_point_1)){
             System.out.println("CORNER");
             return new int[][]{ { 1, 1 }, new int[]{ 1, 1,} };
         }else{
@@ -260,12 +264,14 @@ public class Game {
     /**
      * mossa2_0_PL
      * Pilotaggio mossa 2 nel caso in cui partono loro (Tale metodo parte se la prima mossa è al centro)
+     * @param mossa_1 mia prima mossa
+     * @param enemy_point_2 sua seconda mossa [perché la prima è ovviamente il centro]
      * @return il punto da mettere
      */
-    public int[][] mossa2_0_PL(int[] mossa_1, int[] enemy_point){
+    public int[][] mossa2_0_PL(int[] mossa_1, int[] enemy_point_2){
         int[] opposite_of_mine = getOppositeCorner(mossa_1);
 
-        if(ifEqualPoint(enemy_point, opposite_of_mine)){
+        if(ifEqualPoint(enemy_point_2, opposite_of_mine)){
             return new int[][]{ { 0, 1 }, generateRandomPoint(getFreeCorner()) };
         }else{
             return new int[][]{ { 0, 0 }, generateRandomPoint(getFreePoint()) };
@@ -275,12 +281,14 @@ public class Game {
     /**
      * mossa2_1_PL
      * Pilotaggio mossa 2 nel caso in cui partono loro (Tale metodo parte se la prima mossa è in un angolo)
+     * @param enemy_point_1 prima mossa dell'avversario,
+     * @param enemey_point_2 seconda mossa dell'avversario
      * @return il punto da mettere
      */
-    public int[][] mossa2_1_PL(int[] enemey_point){
-        int[] opposite_of_your = getOppositeCorner(enemey_point);
+    public int[][] mossa2_1_PL(int[] enemy_point_1, int[] enemey_point_2){
+        int[] opposite_of_your = getOppositeCorner(enemy_point_1);
 
-        if(ifEqualPoint(enemey_point, opposite_of_your)){
+        if(ifEqualPoint(enemey_point_2, opposite_of_your)){
             return new int[][]{ {1, 0}, generateRandomPoint(getFreeCentralZone()) };
         }else{
             return new int[][]{ {1, 1}, generateRandomPoint(getFreeCorner()) };
@@ -290,11 +298,12 @@ public class Game {
     /**
      * mossa2_2_PL
      * Pilotaggio mossa 2 nel caso in cui partono loro (Tale metodo parte se la prima mossa non è ne al centro ne in un angolo)
+     * @param enemy_point_2 seconda mossa dell'avversario
      * @return il punto da mettere
      */
-    public int[][] mossa2_2_PL(int[] enemy_point){
+    public int[][] mossa2_2_PL(int[] enemy_point_2){
 
-        if(ifCorner(enemy_point)){
+        if(ifCorner(enemy_point_2)){
 
             int prodotto_riga_1 = this.table.rowProduct(1);
             int prodotto_colonna_1 = this.table.columnProduct(1);
@@ -323,7 +332,7 @@ public class Game {
             ArrayList<int[]> good_corner = new ArrayList<>();
 
             for (int[] aCorner : free_corner) {
-                if(table.rowProduct(aCorner[0]) != 1 && table.columnProduct(aCorner[1]) != 1 ){
+                if(table.rowProduct(aCorner[0]) != 1 || table.columnProduct(aCorner[1]) != 1 ){
                     good_corner.add(aCorner);
                 }
             }
