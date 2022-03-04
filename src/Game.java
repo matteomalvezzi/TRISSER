@@ -35,6 +35,15 @@ public class Game {
     }
 
     /** ------------------------------------ Gaming Methods ------------------------------------ **/
+
+    /**
+     * playGamePN
+     * Gioca una mossa in una partita dove partiamo noi
+     * ..Non si necessita di una mossa fatta da noi dato che ogni volta che vengono restituite vengono registrate
+     * @param idx_t indice di partita [turno] (determina il punto in cui è ferma la partita, si incrementa ogni volta che noi giochiamo)
+     * @param enemy mossa avversario del turno corrente
+     * @return mossa da restituire
+     * **/
     public int[] playGamePN(int idx_t, int[] enemy){
         int[] pwm;
         int[] plm;
@@ -70,30 +79,81 @@ public class Game {
                 return null;
         }
     }
-
+    /**
+     * playGamePL
+     * Gioca una mossa in una partita dove partono loro
+     * @param idx_t indice di partita [turno] (determina il punto in cui è ferma la partita, si incrementa ogni volta che noi giochiamo)
+     * @param enemy mossa avversario del turno corrente
+     * @return mossa da restituire
+     * **/
     public int[] playGamePL(int idx_t, int[] enemy){
+        int[] pwm;
+        int[] plm;
+        int[][] next_move;
         switch (idx_t){
             /** ---- Risposta numero 1---- **/
             case 1:
-                int[][] next_move = mossa1_PL(enemy);
+                next_move = mossa1_PL(enemy);
                 this.ng = next_move[0][1];
                 return next_move[1];
 
             /** ---- Risposta numero 2---- **/
             case 2:
+                //Scanner
+                pwm = this.table.winningMove(); //possibile winning move
+                if(pwm!=null){ System.out.println("Ho trovato una mossa vincente"); return pwm;}
+                plm = this.table.losingMove();  //possible losing move
+                if(plm!=null){ System.out.println("Ho trovato una bloccante"); return plm; }
 
+                //Pilotaggio
+                switch (this.ng){
+                    case 0:
+                        next_move = mossa2_0_PL(this.my_move.get(0), this.enemy_move.get(1));
+                        this.ng  = next_move[0][1];
+                        return next_move[1];
+                    case 1:
+                        next_move = mossa2_1_PL(this.enemy_move.get(0), this.enemy_move.get(1));
+                        this.ng  = next_move[0][1];
+                        return next_move[1];
+                    case 2:
+                        next_move = mossa2_2_PL(this.enemy_move.get(1));
+                        this.ng  = next_move[0][1];
+                        return next_move[1];
+                    default:
+                        System.out.println("ERR");
+                        break;
+                }
+            /** ---- Risposta numero 3-4---- **/
+            case 3:
 
+            case 4:
+                //Scanner
+                pwm = this.table.winningMove(); //possibile winning move
+                if(pwm!=null){ System.out.println("Ho trovato una mossa vincente"); return pwm;}
+                plm = this.table.losingMove();  //possible losing move
+                if(plm!=null){ System.out.println("Ho trovato una bloccante"); return plm; }
+
+                return this.generateRandomPoint(this.getFreePoint());
 
             default:
                 return null;
         }
     }
 
-
+    /**
+     * setEnemyPoint
+     * Setta il point nel tavolo e registra la mossa come mossa nemica
+     * @param p punto da settare
+     * **/
     public void setEnemyPoint(int[] p){
         this.enemy_move.add(p);
         this.table.setPoint(p[0], p[1],5);
     }
+    /**
+     * setMyPoint
+     * Setta il point nel tavolo e registra la mossa come mossa amica
+     * @param p punto da settare
+     * **/
     public void setMyPoint(int[] p){
         this.my_move.add(p);
         this.table.setPoint(p[0], p[1],3);

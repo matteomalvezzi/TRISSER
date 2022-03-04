@@ -3,67 +3,34 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-
-
-//        current_game.table.setPoint(0, 1, 5);
-//        current_game.table.setPoint(1, 1, 3);
-//        current_game.table.setPoint(2, 1, 5);
-//        current_game.table.showTable();
-//
-////        int[][] next_mossa =current_game.mossa3_PN(new int[]{0, 0});
-////
-////        int[] mossa = next_mossa[1];
-////
-////        for (int i : mossa) {
-////            System.out.print(i);
-////        }
-//
-//        int[][] next_mossa = current_game.mossa2_2_PL(new int[]{2, 1});
-//        int[] mossa = next_mossa[1];
-//
-//        for (int i : mossa) {
-//            System.out.print(i);
-//        }
-
-
-        //Mettiamo che partiamo noi
         int[] ma;
         Tavolo t = new Tavolo();
 
-        Game current_game = new Game(t, true);
+        Game cg = new Game(t, false);
 
-        doGamePN(current_game, 1, null);
+        ma = cg.generateRandomPoint(cg.getFreePoint());
+        System.out.println("--------MOSSA AVVERSARIO: "+ ma[0] +" - " + ma[1] +"-------");
+        doGamePL(cg, 1, ma);
 
-        current_game.table.showRealTable();
+        cg.table.showRealTable();
 
-        ma = current_game.generateRandomPoint(current_game.getFreePoint());
-        System.out.println("--------- L'AVVERSARIO RISPONDE IN :" + ma[0] + "-" + ma[1] + "------");
+        ma = cg.generateRandomPoint(cg.getFreePoint());
+        System.out.println("--------MOSSA AVVERSARIO: "+ ma[0] +" - " + ma[1] +"-------");
+        doGamePL(cg, 2, ma);
 
-        doGamePN(current_game, 2, ma);
+        cg.table.showRealTable();
 
-        current_game.table.showRealTable();
+        ma = cg.generateRandomPoint(cg.getFreePoint());
+        System.out.println("--------MOSSA AVVERSARIO: "+ ma[0] +" - " + ma[1] +"-------");
+        doGamePL(cg, 3, ma);
 
-        ma = current_game.generateRandomPoint(current_game.getFreePoint());
-        System.out.println("--------- L'AVVERSARIO RISPONDE IN :" + ma[0] + "-" + ma[1] + "------");
+        cg.table.showRealTable();
 
-        doGamePN(current_game, 3, ma);
+        ma = cg.generateRandomPoint(cg.getFreePoint());
+        System.out.println("--------MOSSA AVVERSARIO: "+ ma[0] +" - " + ma[1] +"-------");
+        doGamePL(cg, 4, ma);
 
-        current_game.table.showRealTable();
-
-        ma = current_game.generateRandomPoint(current_game.getFreePoint());
-        System.out.println("--------- L'AVVERSARIO RISPONDE IN :" + ma[0] + "-" + ma[1] + "------");
-
-        doGamePN(current_game, 4, ma);
-
-        current_game.table.showRealTable();
-
-        ma = current_game.generateRandomPoint(current_game.getFreePoint());
-        System.out.println("--------- L'AVVERSARIO RISPONDE IN :" + ma[0] + "-" + ma[1] + "------");
-
-        doGamePN(current_game, 5, null);
-
-        current_game.table.showRealTable();
-        System.out.println("--------- PROSSIMA MOSSA ------");
+        cg.table.showRealTable();
     }
 
     /**
@@ -105,5 +72,45 @@ public class Main {
         int[] next_my_move = my_game.playGamePL(idx_game, enemy_move);
         my_game.setMyPoint(next_my_move);
 
+    }
+
+    public static void testOfGame(){
+        int[] ma;
+        Tavolo t = new Tavolo();
+
+        Game current_game = new Game(t, true);
+
+        doGamePN(current_game, 1, null);
+
+        current_game.table.showRealTable();
+
+        ma = current_game.generateRandomPoint(current_game.getFreePoint());
+        System.out.println("--------- L'AVVERSARIO RISPONDE IN :" + ma[0] + "-" + ma[1] + "------");
+
+        doGamePN(current_game, 2, ma);
+
+        current_game.table.showRealTable();
+
+        ma = current_game.generateRandomPoint(current_game.getFreePoint());
+        System.out.println("--------- L'AVVERSARIO RISPONDE IN :" + ma[0] + "-" + ma[1] + "------");
+
+        doGamePN(current_game, 3, ma);
+
+        current_game.table.showRealTable();
+
+        ma = current_game.generateRandomPoint(current_game.getFreePoint());
+        System.out.println("--------- L'AVVERSARIO RISPONDE IN :" + ma[0] + "-" + ma[1] + "------");
+
+        doGamePN(current_game, 4, ma);
+
+        current_game.table.showRealTable();
+
+        ma = current_game.generateRandomPoint(current_game.getFreePoint());
+        System.out.println("--------- L'AVVERSARIO RISPONDE IN :" + ma[0] + "-" + ma[1] + "------");
+
+        doGamePN(current_game, 5, null);
+
+        current_game.table.showRealTable();
+        System.out.println("--------- PROSSIMA MOSSA ------");
     }
 }
