@@ -1,37 +1,12 @@
-import java.util.ArrayList;
-
 public class Main {
 
+
     public static void main(String[] args) {
-        int[] ma;
-        Tavolo t = new Tavolo();
+        OnlineGame game = new OnlineGame(null);
 
-        Game cg = new Game(t, false);
-
-        ma = cg.generateRandomPoint(cg.getFreePoint());
-        System.out.println("--------MOSSA AVVERSARIO: "+ ma[0] +" - " + ma[1] +"-------");
-        doGamePL(cg, 1, ma);
-
-        cg.table.showRealTable();
-
-        ma = cg.generateRandomPoint(cg.getFreePoint());
-        System.out.println("--------MOSSA AVVERSARIO: "+ ma[0] +" - " + ma[1] +"-------");
-        doGamePL(cg, 2, ma);
-
-        cg.table.showRealTable();
-
-        ma = cg.generateRandomPoint(cg.getFreePoint());
-        System.out.println("--------MOSSA AVVERSARIO: "+ ma[0] +" - " + ma[1] +"-------");
-        doGamePL(cg, 3, ma);
-
-        cg.table.showRealTable();
-
-        ma = cg.generateRandomPoint(cg.getFreePoint());
-        System.out.println("--------MOSSA AVVERSARIO: "+ ma[0] +" - " + ma[1] +"-------");
-        doGamePL(cg, 4, ma);
-
-        cg.table.showRealTable();
     }
+
+
 
     /**
      * doGamePM
@@ -74,6 +49,8 @@ public class Main {
 
     }
 
+
+    //Local game test
     public static void testOfGame(){
         int[] ma;
         Tavolo t = new Tavolo();
@@ -112,5 +89,20 @@ public class Main {
 
         current_game.table.showRealTable();
         System.out.println("--------- PROSSIMA MOSSA ------");
+    }
+
+    public static void testOfGamePL(){
+        int[] ma;
+        Tavolo t = new Tavolo();
+
+        Game cg = new Game(t, false);
+
+        for(int i = 1; i < 5; i++){
+            ma = cg.generateRandomPoint(cg.getFreePoint());
+            System.out.println("--------MOSSA AVVERSARIO: "+ ma[0] +" - " + ma[1] +"-------");
+            doGamePL(cg, i, ma);
+
+            cg.table.showRealTable();
+        }
     }
 }
