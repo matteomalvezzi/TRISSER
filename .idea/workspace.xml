@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fb83e93-199c-41bc-8984-96f44c2b0cc3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javax_mail_1_6_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/json_simple_1_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_eclipse_paho_client_mqttv3_1_2_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.activation-1.2.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.mail-1.6.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/json-simple-1.1.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jsoup-1.14.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/org.eclipse.paho.client.mqttv3-1.2.5.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OnlineGame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Rooms.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algoritmo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Algoritmo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tavolo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tavolo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OnlineGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OnlineGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,6 +126,7 @@
       <workItem from="1646402776179" duration="9810000" />
       <workItem from="1646462499985" duration="8877000" />
       <workItem from="1646479667661" duration="1463000" />
+      <workItem from="1646491066849" duration="10020000" />
     </task>
     <servers />
   </component>

@@ -32,7 +32,6 @@ import javax.activation.*;
 public class OnlineGame {
 
     public MqttClient current_client;
-    //public MqttCallback current_client_callback;
 
     public static final String EMAIL = "TRISSER.bot3@gmail.com";
     public static final String PASSWD_EMAIL = "Einaudi123";
@@ -47,35 +46,37 @@ public class OnlineGame {
     public int n_match_for_room;
     public int n_room;
 
-    public OnlineGame(MqttCallback clb) {
+    public OnlineGame() {
 
         topic_list = new ArrayList<>();
 
         try{
+            //Get email
             String email = connectToMailServer();
-
+            //Extract data from email
             readMail(email);
-
-            System.out.println(username_client + password_client);
-
-//            this.current_client = connectToServer(username_client, password_client);
-//
-//            if(goOnlineOnServer(this.current_client)){
-//                System.out.println("SONO ANDATO ONLINE");
-//                //this.current_client.setCallback(clb);
-//                for (String s : topic_list) {
-//                    System.out.println(s);
-//                }
-//            }
-
-
-
+            //Connect to Server
+            this.current_client = connectToServer(username_client, password_client);
+            //Go online
+            if(goOnlineOnServer(this.current_client)){
+                //Show rooms
+                for (String s : topic_list) {
+                    System.out.println(s);
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
-
-        //String example_mail = "{\"rooms\":[\"TRISSER.server@gmail.com_giaco.paltri@gmail.com\",\"giaco.paltri@gmail.com_abdullah.ali@einaudicorreggio.it\"],\"rules\" : {\"date\":\"22-08-2002 15:30:20\",\"connection_time\":20,\"time\":20,\"bot_number\":100},\"pwd\":\"FnOnaPe3\",\"user\":\"giaco.paltri@gmail.com\",\"room_instance\" : 50}";
+    /**
+     * setCallback
+     * setto la funzione di callback, ovvero l'oggetto che contiene il metodo che verrà richiamato ogni volta che arriverà un messaggio
+     * @param mqttCallback oggetto di callback
+     * **/
+    public void setCallback(MqttCallback mqttCallback){
+        //Set callback
+        this.current_client.setCallback(mqttCallback);
     }
 
     /**
@@ -233,57 +234,5 @@ public class OnlineGame {
             return false;
         }
         return true;
-    }
-
-    /**
-     * convertLocalCoordinateToNumber
-     * converte le variabile int[] (coordinate locali di un punto) in un numero, da 1 a 9, che identifica la singola cella
-     * @param point punto da convertire in numero
-     * **/
-    public static int convertLocalCoordinateToNumber(int[] point){
-        int r = point[0];
-        int c = point[1];
-
-        int idx = 1;
-        for(int i = 0; i < 3; i++ ){
-
-            for(int j = 0; j < 3; j++){
-
-                if(i == r && j == c ){ return idx; }
-                idx++;
-            }
-
-        }
-        return -1;
-    }
-
-    /**
-     * convertNumberToLocalCoordinate
-     * converte un numero che rappresenta una cella in una coordinata locale
-     * @param number punto da convertire in coordinate locali int[]
-     * **/
-    public static int[] convertNumberToLocalCoordinate(int number){
-        switch (number){
-            case 1:
-                return new int[]{0, 0};
-            case 2:
-                return new int[]{0, 1};
-            case 3:
-                return new int[]{0, 2};
-            case 4:
-                return new int[]{1, 0};
-            case 5:
-                return new int[]{1, 1};
-            case 6:
-                return new int[]{1, 2};
-            case 7:
-                return new int[]{2, 0};
-            case 8:
-                return new int[]{2, 1};
-            case 9:
-                return new int[]{2, 2};
-            default:
-                return null;
-        }
     }
 }

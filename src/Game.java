@@ -14,8 +14,10 @@ public class Game {
     public ArrayList<int[]> enemy_move;
     public ArrayList<int[]> my_move;
     public boolean whoStart; //true parto io false parte lui
+    public int myMosseCounter;
 
     int ng;
+
 
     /** ------------------------------------ Constructor ------------------------------------ **/
 
@@ -23,11 +25,13 @@ public class Game {
      * Game
      * Il costruttore si occupa di inserire il tavolo corrente del Game
      * @param current_table il tavolo precedentemente creato
+     * @param wS flag WhoStart, se true partiamo noi se false partono loro
      * @see Tavolo
      * **/
     public Game(Tavolo current_table, boolean wS) {
         my_move = new ArrayList<>();
         enemy_move = new ArrayList<>();
+        myMosseCounter = 0;
 
         int ng = 0;
         this.whoStart = wS;
@@ -45,6 +49,7 @@ public class Game {
      * @return mossa da restituire
      * **/
     public int[] playGamePN(int idx_t, int[] enemy){
+        myMosseCounter++;
         int[] pwm;
         int[] plm;
         switch (idx_t){
@@ -87,6 +92,7 @@ public class Game {
      * @return mossa da restituire
      * **/
     public int[] playGamePL(int idx_t, int[] enemy){
+        myMosseCounter++;
         int[] pwm;
         int[] plm;
         int[][] next_move;
