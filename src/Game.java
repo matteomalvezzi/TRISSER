@@ -6,7 +6,18 @@ import java.util.Random;
  * Citazione di Verla
  * Tutte le strade non portano a roma portano a new int[][]{2, 2}
  * */
-
+/**
+ * LE FUNZIONALITA DI QUESTA CLASSE
+ * Gestisco il Game:
+ *  -Gestisco il tavolo
+ *  -Calcolo le mosse vincenti
+ *  -registro le mosse nemiche e le mie mosse
+ *  -piloto le mosse
+ *  -Calcolo di possibili mosse bloccanti o vincenti
+ *
+ * @author Matteo Malvezzi, Alessandro Verlanti
+ * @see Tavolo
+ * **/
 public class Game {
 
     /** ------------------------------------ Attributi ------------------------------------ **/

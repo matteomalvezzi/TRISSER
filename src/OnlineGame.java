@@ -3,16 +3,16 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Properties;
 
 import javax.mail.*;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.search.FlagTerm;
-
-import javax.activation.*;
 
 
 /**
@@ -24,7 +24,7 @@ import javax.activation.*;
  * Controllo il topic broadcast per capire quando starta la partita e se c'è gente offline {da togliere dalla topic list}
  * Mi iscrivo alle topic della topic list
  *
- * @author Matteo Malvezzi
+ * @author Matteo Malvezzi, Alessandro Verlanti
  * @see Main
  * @see Game
  * @see Tavolo
@@ -33,18 +33,25 @@ public class OnlineGame {
 
     public MqttClient current_client;
 
+    /** ---- Connect to IMAP Server to read email and spec attributes  ---- **/
+
     public static final String EMAIL = "TRISSER.bot3@gmail.com";
     public static final String PASSWD_EMAIL = "Einaudi123";
     public static final String MAIL_SERVER = "imap.gmail.com";
     public static final String MAIL_PROTOCOL = "imaps";
+
+    /** ---- Connect to Mqtt Server Broker attributes  ---- **/
 
     public String username_client;
     public String password_client;
     public ArrayList<String> topic_list;
     public String game_date;
 
+    /** ---- data about rooms of this client  ---- **/
+
     public int n_match_for_room;
     public int n_room;
+    public ArrayList<Room> rooms;
 
     public OnlineGame() {
 
@@ -63,11 +70,106 @@ public class OnlineGame {
                 for (String s : topic_list) {
                     System.out.println(s);
                 }
+                //Subscribe topics
+                subscribeTopic();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //Create rooms
+        for (String room_name : this.topic_list) {
+            rooms.add(new Room(room_name, this.n_match_for_room));
+        }
+
+        //Create callback
+        MqttCallback game_callback = new MqttCallback() {
+            @Override
+            public void connectionLost(Throwable throwable) {
+
+            }
+
+            @Override
+            public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception {
+                String[] topic_split = topic.split("/");   //Stringa topic splittata in sub-topic
+                String room_name = topic_split[0];            //    Stanza/TOPIC
+
+                if(Objects.equals(room_name, "broadcast")){
+                    JSONParser jsonParser = new JSONParser();
+                    JSONObject jsonObject = (JSONObject) jsonParser.parse(mqttMessage.toString());
+                    if(Objects.equals(jsonObject.get("game").toString(), "Start")){
+                        //MI DEVO ISCRIVERE ALLE TOPIC
+                    }
+
+
+                }else if(topic_list.contains(room_name)){
+                    int game_index = Integer.parseInt(topic_split[1]);             // Game/SUB-TOPIC
+                    String my_topic = "TRISSER.bot3@gmail.com";
+                    String enemy_topic = topic_split[2];                           // Topic nemica/SUB-SUB-TOPIC
+
+                    //Get Room
+                    Room current_room = getRoom(room_name);
+                    if(current_room!=null){
+                        //Get Game
+                        Game current_game = getGame(current_room, game_index);
+                        //Verify that topic is from enemy
+                        if(Objects.equals(current_room.enemy, enemy_topic)){
+                            //Get enemy move
+                            JSONParser jP = new JSONParser();
+                            JSONObject jO = (JSONObject) jP.parse(mqttMessage.toString());
+
+                            int enemy_move = (int) jO.get("move");
+
+                            //Calculate my move
+                            int my_move = current_room.action(game_index, enemy_move);
+
+                            //Send my move
+                            String return_topic = room_name+"/"+game_index+"/"+my_topic;
+
+                            String return_msg = "{\"move\":\"" + my_move + "\"}";
+                            MqttMessage returnMqtt_msg = new MqttMessage(return_msg.getBytes(StandardCharsets.UTF_8));
+                            current_client.publish(return_topic, returnMqtt_msg);
+
+                        }
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
+
+            }
+        };
+
+        //Set Callback
+        this.current_client.setCallback(game_callback);
     }
+
+    /**
+     * getRoom
+     * Dato un nome stanza restituisce la stanza associata
+     * @param room_name nome stanza
+     * @return Stanza
+     * **/
+    public Room getRoom(String room_name){
+        for (Room room : rooms) {
+            if(Objects.equals(room_name, room.nome_stanza)){
+                return room;
+            }
+        }return null;
+    }
+    /**
+     * getGame
+     * Dato una stanza e un indice di game restituisce un game
+     * @param room Stanza
+     * @param game_index indice del game
+     * @return Game
+     * **/
+    public Game getGame(Room room, int game_index){
+        return room.games.get(game_index+1);
+    }
+
 
     /**
      * setCallback
@@ -201,6 +303,7 @@ public class OnlineGame {
             connOpts.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1);
             connOpts.setUserName(username);
             connOpts.setPassword(passwd.toCharArray());
+            my_client.connect(connOpts);
             System.out.println("Connecting to broker: " + broker);
             return my_client;
         } catch (MqttException e) {
@@ -235,4 +338,34 @@ public class OnlineGame {
         }
         return true;
     }
+
+    /**
+     * subscribeTopic
+     * metodo per iscriversi alle topic affinché i messaggi arrivino nel metodo di callback massageArrived
+     * **/
+    public boolean subscribeTopic(){
+        try {
+            this.current_client.subscribe("broadcast"); //Mi iscrivo alla topic di broadcast
+
+            for (String room : this.topic_list) {   //Mi iscrivo a tutte le subtopic[Game] di tutte le topic[Rooms]
+
+//                String[] gamer = room.split("_");
+//                String first_gamer = gamer[0];
+//                String second_gamer = gamer[1];
+
+                for (int i = 0; i < this.n_match_for_room; i++) {
+
+//                    this.current_client.subscribe(room+"/"+i+"/"+first_gamer);
+//                    this.current_client.subscribe(room+"/"+i+"/"+second_gamer);
+                    this.current_client.subscribe(room+"/"+i);
+
+                }
+            }
+        } catch (MqttException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Rooms {
+public class Room {
 
     /**
      * Attributi
@@ -12,12 +12,15 @@ public class Rooms {
     String nome_stanza;
     ArrayList<Game> games;
 
+    String me;
+    String enemy;
+
     /**
      * <h3>Costruttore</h3>
      * Il costruttore si occupa di inizializzare i N game e di capire in quali game parto io e quali non parto io,
      * una volta chiuso il costruttore si farà "l'action immediato" dei game dove parto io
      * **/
-    public Rooms(String nome_stanza, int partite_per_stanza) {
+    public Room(String nome_stanza, int partite_per_stanza) {
         this.nome_stanza = nome_stanza;
         games = new ArrayList<>();
 
@@ -31,11 +34,17 @@ public class Rooms {
                 if(i%2==0){ games.add(new Game(new Tavolo(), true)); }
                 else{ games.add(new Game(new Tavolo(), false)); }
             }
+            String[] gamer = nome_stanza.split("_");
+            this.me = gamer[0];
+            this.enemy = gamer[1];
         }else{
             for(int i = 0; i < partite_per_stanza; i++){
                 if(i%2==0){ games.add(new Game(new Tavolo(), false)); }
                 else{ games.add(new Game(new Tavolo(), true)); }
             }
+            String[] gamer = nome_stanza.split("_");
+            this.me = gamer[1];
+            this.enemy = gamer[0];
         }
 
     }
