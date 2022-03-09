@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * Citazione di Verla
+ * Citazione di Verla IMPORTANTE
  * Tutte le strade non portano a roma portano a new int[][]{2, 2}
  * */
 /**
@@ -11,7 +11,7 @@ import java.util.Random;
  * Gestisco il Game:
  *  -Gestisco il tavolo
  *  -Calcolo le mosse vincenti
- *  -registro le mosse nemiche e le mie mosse
+ *  -registroPRENDO LA MAIL le mosse nemiche e le mie mosse
  *  -piloto le mosse
  *  -Calcolo di possibili mosse bloccanti o vincenti
  *
@@ -74,24 +74,32 @@ public class Game {
 
             /** ---- Risposta numero 3---- **/
             case 3:
+                //Scanner
                 pwm = this.table.winningMove(); //possibile winning move
-                if(pwm!=null){ System.out.println("HO VINTO"); return pwm;}
+                if(pwm!=null){ System.out.println("Ho trovato una mossa vincente"); return pwm;}
                 plm = this.table.losingMove();  //possible losing move
-                if(plm!=null){ System.out.println("HO PERSO"); return plm; }
+                if(plm!=null){ System.out.println("Ho trovato una bloccante"); return plm; }
 
                 return mossa3_PN(my_move.get(0));
             /** ---- Risposta numero 4-5 ---- **/
             case 4:
 
             case 5:
+
+            case 6:
+
+            case 7:
                 pwm = this.table.winningMove(); //possibile winning move
                 if(pwm!=null){return pwm; }
                 plm = this.table.losingMove();  //possible losing move
                 if(plm!=null){return plm; }
 
-                return generateRandomPoint(getFreePoint());
+                int [] finale = generateRandomPoint(getFreePoint());
+                System.out.println("FINALE: " + finale[0] + " " + finale[1]);
+                return finale;
 
             default:
+                System.out.println("NON CI SONO PIU");
                 return null;
         }
     }
@@ -144,15 +152,24 @@ public class Game {
             case 3:
 
             case 4:
+
+            case 5:
+
+            case 6:
+
+            case 7:
                 //Scanner
                 pwm = this.table.winningMove(); //possibile winning move
                 if(pwm!=null){ System.out.println("Ho trovato una mossa vincente"); return pwm;}
                 plm = this.table.losingMove();  //possible losing move
                 if(plm!=null){ System.out.println("Ho trovato una bloccante"); return plm; }
 
-                return this.generateRandomPoint(this.getFreePoint());
+                int [] finale = generateRandomPoint(getFreePoint());
+                System.out.println("FINALE: " + finale[0] + " " + finale[1]);
+                return finale;
 
             default:
+                System.out.println("NON CI SONO PIU");
                 return null;
         }
     }

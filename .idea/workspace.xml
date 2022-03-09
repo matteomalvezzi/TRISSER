@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fb83e93-199c-41bc-8984-96f44c2b0cc3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/org.eclipse.paho.client.mqttv3-1.2.4.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_eclipse_paho_client_mqttv3_1_2_5.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algoritmo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Algoritmo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/org.eclipse.paho.client.mqttv3-1.2.5.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OnlineGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OnlineGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Rooms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Room.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,12 +60,12 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Scaricati/TRISSER_SERVER" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/org.eclipse.paho.client.mqttv3-1.2.4.jar" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -75,6 +78,13 @@
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Algoritmo" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OnlineGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="OnlineGame" />
       <module name="Algoritmo" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -97,6 +107,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.OnlineGame" />
         <item itemvalue="Application.Second_Main" />
         <item itemvalue="Application.SecondMain" />
       </list>
@@ -128,11 +139,11 @@
       <workItem from="1646402776179" duration="9810000" />
       <workItem from="1646462499985" duration="8877000" />
       <workItem from="1646479667661" duration="1463000" />
-      <workItem from="1646491066849" duration="11650000" />
-      <workItem from="1646573111068" duration="1187000" />
-      <workItem from="1646636064938" duration="198000" />
-      <workItem from="1646647852317" duration="659000" />
-      <workItem from="1646664420059" duration="7578000" />
+      <workItem from="1646491066849" duration="10020000" />
+      <workItem from="1646664919224" duration="3195000" />
+      <workItem from="1646674866825" duration="785000" />
+      <workItem from="1646731978922" duration="8285000" />
+      <workItem from="1646759169712" duration="14848000" />
     </task>
     <servers />
   </component>

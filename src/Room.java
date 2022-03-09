@@ -67,19 +67,24 @@ public class Room {
      * **/
     public int action(int id_game, int mossa_avversaria){
 
-        Game current_game = games.get(id_game+1);
+        System.out.println(id_game);
+        Game current_game = this.games.get(id_game);
 
         int[] ma_local = convertNumberToLocalCoordinate(mossa_avversaria);
 
         int[] mm_local;
 
-        if(current_game.whoStart) {
+        boolean ws = current_game.whoStart;
+
+        if(ws) {
             mm_local = doGamePN(current_game, current_game.myMosseCounter + 1, ma_local);
         }else{
             mm_local = doGamePL(current_game, current_game.myMosseCounter + 1, ma_local);
         }
-
-        return convertLocalCoordinateToNumber(mm_local);
+        System.out.println("CORDINATE LOCALE: " + mm_local);
+        int global= convertLocalCoordinateToNumber(mm_local);
+        System.out.println("CORDINATE GLOBALI: " + global);
+        return global;
     }
 
 
