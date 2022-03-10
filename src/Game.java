@@ -76,9 +76,9 @@ public class Game {
             case 3:
                 //Scanner
                 pwm = this.table.winningMove(); //possibile winning move
-                if(pwm!=null){ System.out.println("Ho trovato una mossa vincente"); return pwm;}
+                if(pwm!=null){return pwm;}
                 plm = this.table.losingMove();  //possible losing move
-                if(plm!=null){ System.out.println("Ho trovato una bloccante"); return plm; }
+                if(plm!=null){return plm; }
 
                 return mossa3_PN(my_move.get(0));
             /** ---- Risposta numero 4-5 ---- **/
@@ -91,11 +91,9 @@ public class Game {
                 if(plm!=null){return plm; }
 
                 int [] finale = generateRandomPoint(getFreePoint());
-                System.out.println("FINALE: " + finale[0] + " " + finale[1]);
                 return finale;
 
             default:
-                System.out.println("NON CI SONO PIU MOSSE LA PARTITA E' FINITA");
                 return null;
         }
     }
@@ -122,9 +120,9 @@ public class Game {
             case 2:
                 //Scanner
                 pwm = this.table.winningMove(); //possibile winning move
-                if(pwm!=null){ System.out.println("Ho trovato una mossa vincente"); return pwm;}
+                if(pwm!=null){return pwm;}
                 plm = this.table.losingMove();  //possible losing move
-                if(plm!=null){ System.out.println("Ho trovato una bloccante"); return plm; }
+                if(plm!=null){return plm; }
 
                 //Pilotaggio
                 switch (this.ng){
@@ -141,7 +139,6 @@ public class Game {
                         this.ng  = next_move[0][1];
                         return next_move[1];
                     default:
-                        System.out.println("ERR");
                         break;
                 }
             /** ---- Risposta numero 3-4---- **/
@@ -151,16 +148,14 @@ public class Game {
 
                 //Scanner
                 pwm = this.table.winningMove(); //possibile winning move
-                if(pwm!=null){ System.out.println("Ho trovato una mossa vincente"); return pwm;}
+                if(pwm!=null){return pwm;}
                 plm = this.table.losingMove();  //possible losing move
-                if(plm!=null){ System.out.println("Ho trovato una bloccante"); return plm; }
+                if(plm!=null){return plm;}
 
                 int [] finale = generateRandomPoint(getFreePoint());
-                System.out.println("FINALE: " + finale[0] + " " + finale[1]);
                 return finale;
 
             default:
-                System.out.println("NON CI SONO PIU MOSSE PARTITA FINITA");
                 return null;
         }
     }
@@ -392,10 +387,8 @@ public class Game {
     public int[] mossa3_PN(int[] mossa_1){
 
         if( this.table.rowProduct(mossa_1[0]) == 15 || this.table.columnProduct(mossa_1[1]) == 15 ){
-            System.out.println("Entra qui");
             return getOppositeCorner(mossa_1);
         }else{
-            System.out.println("Entra la");
             return getAdjacentFreeCorner(mossa_1);
         }
 
@@ -413,10 +406,8 @@ public class Game {
         if(enemy_point_1[0] == 1 && enemy_point_1[1] == 1){
             return new int[][]{ { 1, 0 }, generateRandomPoint(getFreeCorner())};
         }else if(ifCorner(enemy_point_1)){
-            System.out.println("CORNER");
             return new int[][]{ { 1, 1 }, new int[]{ 1, 1,} };
         }else{
-            System.out.println("NOT CENTER NOT CORNER");
             return new int[][]{ { 1, 2 }, new int[]{ 1, 1,} };
         }
     }

@@ -14,23 +14,31 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
  * **/
 public class PublishMove extends Thread{
 
-    /**
-     * Attributi
-     * <h2><strong>rt</strong></h2> return topic. topic su cui pubblicare
-     * <h2><strong>rm</strong></h2> return message. topic su cui returnare il messaggio
-     *
-     * **/
+    /** -------------------- Attributi -------------------- */
+
+
+    /** <h2><strong>return topic</strong></h2> topic su cui pubblicare **/
     public String rt;
+    /** <h2><strong>return message</strong></h2> topic su cui returnare il messaggio **/
     public MqttMessage rm;
 
+    /** <h2><strong>mqtt client</strong></h2> client su cui pubblicare il messsaggio **/
     public MqttClient mc;
 
+    /** -------------------- Costruttore --------------------
+     * Si occupa di inizializzare i 3 parametri
+     * */
     public PublishMove(String return_topic, MqttMessage return_mqtt_message, MqttClient return_mqtt_client) {
         this.mc = return_mqtt_client;
         this.rt = return_topic;
         this.rm = return_mqtt_message;
     }
 
+    /** Run method
+     * questo metodo avviato da start() si occupa di avviare il publish gestendone anche l'eventuale eccezione
+     * Usa i due attributi precedentemente definiti nel costruttore
+     * @see Thread
+     * */
     @Override
     public void run() {
         super.run();

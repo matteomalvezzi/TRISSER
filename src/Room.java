@@ -64,26 +64,30 @@ public class Room {
      * @param mossa_avversaria la mossa avversaria
      * @return la mossa già convertita da spedire indietro
      * @see Game
+     *
+     * int[] --> cordinate locali --> punto espresso attraverso l'unione di cordinata x e y sulla matrice
+     * int --> cordinata gloabale --> cordinata che usa il server, punto espresso tramite numero univoco
      * **/
     public int action(int id_game, int mossa_avversaria){
-
-        System.out.println(id_game);
         Game current_game = this.games.get(id_game);
 
+        //Get ma_local [mossa avversaria con mosse locali]
         int[] ma_local = convertNumberToLocalCoordinate(mossa_avversaria);
 
         int[] mm_local;
 
         boolean ws = current_game.whoStart;
 
+        //Check if who start
         if(ws) {
+            //DoGamePN [Uso il metodo per quando partiamo noi]
             mm_local = doGamePN(current_game, current_game.myMosseCounter + 1, ma_local);
         }else{
+            //DoGamePL [Uso il metodo per quando partono loro]
             mm_local = doGamePL(current_game, current_game.myMosseCounter + 1, ma_local);
         }
-        System.out.println("CORDINATE LOCALE: " + mm_local);
+        //Return point with global coordinate
         int global= convertLocalCoordinateToNumber(mm_local);
-        System.out.println("CORDINATE GLOBALI: " + global);
         return global;
     }
 
