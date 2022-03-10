@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 import java.util.Objects;
 
+
 public class Room {
+
+    /** ------------------------------------ Attributes ------------------------------------ **/
 
     /**
      * Attributi
@@ -14,6 +17,8 @@ public class Room {
 
     String me;
     String enemy;
+
+    /** ------------------------------------ Constructor ------------------------------------ **/
 
     /**
      * <h3>Costruttore</h3>
@@ -49,9 +54,11 @@ public class Room {
 
     }
 
+    /** ------------------------------------ Room Methods ------------------------------------ **/
+
     /**
      * <h2>action</h2>
-     * Questo metodo è il metodo principale su cui il nostro algoritmo si interfaccia con il server.
+     * Questo è il metodo principale che permette al nostro algoritmo di interfacciarsi con il server.
      * Questo metodo si occupa di restituire il punto da inviare direttamente al server.
      * Il metodo ha bisogno dell'indice del game [che verrà preso dal numero della topic] e della mossa avversaria, che verrà letta dalla topic avversaria
      * A questo punto, il metodo estrae il game corretto dall'ArrayList che contiene tutti i game di quella stanza.
@@ -91,7 +98,6 @@ public class Room {
         return global;
     }
 
-
     /**
      * whoStart
      * metodo che controllando chi viene prima nel nome della stanza mi dice se parto io o no
@@ -101,7 +107,6 @@ public class Room {
         String first_gamer = nome_stanza.split("_")[0];
         return Objects.equals(first_gamer, "TRISSER.bot3@gmail.com");
     }
-
 
     /**
      * doGamePM
@@ -149,6 +154,7 @@ public class Room {
      * convertLocalCoordinateToNumber
      * converte le variabile int[] (coordinate locali di un punto) in un numero, da 1 a 9, che identifica la singola cella
      * @param point punto da convertire in numero
+     * @return numero dell'equivalente riga e colonna convertita
      * **/
     public static int convertLocalCoordinateToNumber(int[] point){
         if(point!=null){
@@ -173,6 +179,7 @@ public class Room {
      * convertNumberToLocalCoordinate
      * converte un numero che rappresenta una cella in una coordinata locale
      * @param number punto da convertire in coordinate locali int[]
+     * @return riga e colonna dell'equivalente numero convertito
      * **/
     public static int[] convertNumberToLocalCoordinate(int number){
         switch (number){
@@ -217,6 +224,7 @@ public class Room {
             cg.table.showRealTable();
         }
     }
+
     public void testOfGamePL(){
         int[] ma;
         Tavolo t = new Tavolo();

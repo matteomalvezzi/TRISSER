@@ -238,7 +238,6 @@ public class OnlineGame {
         return room.games.get(game_index);
     }
 
-
     /**
      * setCallback
      * setto la funzione di callback, ovvero l'oggetto che contiene il metodo che verrà richiamato ogni volta che arriverà un messaggio
@@ -266,6 +265,7 @@ public class OnlineGame {
         }
         return result;
     }
+
     private String getTextFromMimeMultipart( MimeMultipart mimeMultipart)  throws Exception{
         String result = "";
         int count = mimeMultipart.getCount();
@@ -462,5 +462,4 @@ public class OnlineGame {
         PublishMove pb = new PublishMove(return_topic, returnMqtt_msg, current_client);
         pb.start();
     }
-
 }

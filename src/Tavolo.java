@@ -2,11 +2,22 @@ import java.security.InvalidParameterException;
 
 public class Tavolo {
 
-    /** attribute **/
+    /** ------------------------------------ Attributes ------------------------------------ **/
+
+    /**
+     * Attributi
+     * <h2><strong>N_C</strong></h2> contiene il numero di celle della matrice table
+     * <h2><strong>table</strong></h2> matrice che rappresenta il tavolo di gioco
+     * **/
     public static final int N_C = 3; // cells number
     private int[][] table;
 
-    /** constructor **/
+    /** ------------------------------------ Constructor ------------------------------------ **/
+
+    /**
+     * <h3>Costruttore</h3>
+     * Il costruttore si occupa di inizializzare ad 1 tutte le celle del tavolo di gioco
+     * **/
     public Tavolo() {
         this.table = new int[N_C][N_C];
         for(int i = 0; i < N_C; i++) {
@@ -16,9 +27,13 @@ public class Tavolo {
         }
     }
 
-    /*** ---------------  Check winning and losing method  ------------------***/
+    /** --------------------------  Check winning and losing method  ------------------------- **/
 
-    /** metodo che esegue tutti i controlli vincenti sulla matrice **/
+    /**
+     * winningMove
+     * Metodo che si occupa di eseguire tutti i metodi di scansione di eventuali mosse vincenti su righe, colonne e le due diagonali
+     * @return ritorna, se trova una mossa vincente, la posizione di riga e colonna per vincere, altrimenti null
+     * **/
     public int[] winningMove(){
         int[][] x = this.table;
 
@@ -37,7 +52,11 @@ public class Tavolo {
         return scanDiagonal(x, true);
     }
 
-    /** metodo che esegue tutti i controlli bloccanti sulla matrice **/
+    /**
+     * losingMove
+     * Metodo che si occupa di eseguire tutti i metodi di scansione di eventuali mosse bloccanti su righe, colonne e le due diagonali
+     * @return ritorna, se trova una mossa bloccante, la posizione di riga e colonna per bloccare una possibile mossa vincente avversaria, altrimenti null
+     * **/
     public int[] losingMove(){
         int[][] x = this.table;
 
@@ -56,9 +75,16 @@ public class Tavolo {
         return scanDiagonal(x, false);
     }
 
-    /*** ---------------  Scanning Method ------------------***/
+    /** ---------------------------------  Scanning Method ---------------------------------- **/
 
-    /** scan winning or losing move on row and column **/
+    /**
+     * scanRowColumn
+     * Scansiona tutte le righe e tutte le colonne e indica la posizione (riga e colonna) di un eventuale mossa vincente o bloccante
+     * @param x tavolo di gioco
+     * @param is_X parametro che indica se si sta controllando una mossa vincente (true) o una mossa bloccante (false)
+     * @param is_row parametro che indica se si sta controllando una riga (true) o una colonna (false)
+     * @return ritorna, se viene trovata una mossa vincente o bloccante, la riga e colonna in cui posizionare il punto, altrimenti null
+     * **/
     public int[] scanRowColumn(int[][] x, boolean is_X, boolean is_row) { // matrice, mossa vincente o bloccante, controllo riga o colonna
         int product = 1;
         int row_move;
@@ -99,7 +125,13 @@ public class Tavolo {
         return null;
     }
 
-    /** scan winning or losing move on diagonal **/
+    /**
+     * scanDiagonal
+     * Scansiona le due diagonali e indica la posizione (riga e colonna) di un eventuale mossa vincente o bloccante
+     * @param x tavolo di gioco
+     * @param is_X parametro che indica se si sta controllando una mossa vincente (true) o una mossa bloccante (false)
+     * @return ritorna, se viene trovata una mossa vincente o bloccante, la riga e colonna in cui posizionare il punto, altrimenti null
+     * **/
     public int[] scanDiagonal(int[][] x, boolean is_X){
         int product = 1;
         int row_move = 0;
@@ -147,11 +179,14 @@ public class Tavolo {
         return null;
     }
 
+    /** ---------------  Set/View Point ------------------ **/
 
-
-    /*** ---------------  Set/View Point ------------------***/
-
-    /** set point
+    /**
+     * setPoint
+     * Permette di settare il punto all'interno del tavolo di gioco
+     * @param r riga in cui settare il punto
+     * @param c colonna in cui settare il punto
+     * @param point valore del punto (3=nostro / 5=avversario)
      * TODO mettere controllo per evitare che vengano settati punti gia occupati
      * **/
     public void setPoint(int r, int c, int point){
@@ -164,7 +199,13 @@ public class Tavolo {
         }catch(InvalidParameterException e){}
     }
 
-    /** get point **/
+    /**
+     * getPoint
+     * Permette di ottenere il punto di riga e colonna specificata
+     * @param r riga in cui si trova il punto
+     * @param c colonna in cui si trova il punto
+     * @return ritorna il valore del punto selezionato
+     * **/
     public int getPoint(int r, int c){
         try{
             if(r >= 0 && r <= 2 && c >= 0 && c <= 2){
@@ -175,8 +216,7 @@ public class Tavolo {
         }catch(InvalidParameterException e){ return -1;}
     }
 
-
-    /*** ---------------  Show table ------------------***/
+    /** ---------------  Show table ------------------ **/
 
     public void showTable(){
         for(int i = 0; i < N_C; i++) {
@@ -188,6 +228,11 @@ public class Tavolo {
         }
     }
 
+    /**
+     * showRealTable
+     * Permette di visualizzare il tavolo di gioco
+     * converte tutti i nostri punti (identificati dal valore 3) con una X e i punti dell'avversario (identificati dal valore 5) con un O
+     * **/
     public void showRealTable(){
         for(int i = 0; i < N_C; i++) {
             for(int j = 0; j < N_C; j++){
@@ -206,7 +251,13 @@ public class Tavolo {
 
     /*** ---------------  get Row Product and Column Product ------------------***/
 
-    public int rowProduct(int r ){
+    /**
+     * rowProduct
+     * Calcola il prodotto della riga specificata
+     * @param r riga in cui si trova il punto
+     * @return ritorna il prodotto della riga selezionata
+     * **/
+    public int rowProduct(int r){
         int product = 1;
         for(int i = 0; i < 3; i++){
             int value_of_point = table[r][i];
@@ -215,7 +266,13 @@ public class Tavolo {
         return product;
     }
 
-    public int columnProduct(int c ){
+    /**
+     * columnProduct
+     * Calcola il prodotto della colonna specificata
+     * @param c colonna in cui si trova il punto
+     * @return ritorna il prodotto della colonna selezionata
+     * **/
+    public int columnProduct(int c){
         int product = 1;
         for(int i = 0; i < 3; i++){
             int value_of_point = table[i][c];
@@ -223,6 +280,4 @@ public class Tavolo {
         }
         return product;
     }
-
-
 }

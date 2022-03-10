@@ -1,5 +1,8 @@
 public class Log {
 
+
+    /** ------------------------------------ Attributes ------------------------------------ **/
+
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -9,6 +12,8 @@ public class Log {
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
+
+    /** ------------------------------------ Log Methods ------------------------------------ **/
 
     //info
     public static void i(String method, String message) {

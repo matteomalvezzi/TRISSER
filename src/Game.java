@@ -2,10 +2,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+
 /**
  * Citazione di Verla IMPORTANTE
  * Tutte le strade non portano a roma portano a new int[][]{2, 2}
- * */
+ **/
+
 /**
  * LE FUNZIONALITA DI QUESTA CLASSE
  * Gestisco il Game:
@@ -20,15 +22,25 @@ import java.util.Random;
  * **/
 public class Game {
 
-    /** ------------------------------------ Attributi ------------------------------------ **/
+    /** ------------------------------------ Attributes ------------------------------------ **/
+
+    /**
+     * Attributi
+     * <h2><strong>table</strong></h2> tavolo di gioco
+     * <h2><strong>enemy_move</strong></h2> Arraylist che si occupa di memorizzare le mosse avversarie
+     * <h2><strong>my_move</strong></h2> Arraylist che si occupa di memorizzare le nostre mosse
+     * <h2><strong>whoStart</strong></h2> indica chi sarà il primo bot ad eseguire la mossa
+     * <h2><strong>myMosseCounter</strong></h2> memorizza la quantità di mosse eseguite
+     * **/
     public Tavolo table;
     public ArrayList<int[]> enemy_move;
     public ArrayList<int[]> my_move;
     public boolean whoStart; //true parto io false parte lui
     public int myMosseCounter;
 
-    int ng;
+    /** nextGerarchy indica la prossima gerarchia da seguire (utile per stabilire la direzione da percorrere per eseguire la prossima mossa) **/
 
+    int ng;
 
     /** ------------------------------------ Constructor ------------------------------------ **/
 
@@ -49,7 +61,7 @@ public class Game {
         this.table = current_table;
     }
 
-    /** ------------------------------------ Gaming Methods ------------------------------------ **/
+    /** ------------------------------------ Gaming Methods ----------------------------------- **/
 
     /**
      * playGamePN
@@ -169,6 +181,7 @@ public class Game {
         this.enemy_move.add(p);
         this.table.setPoint(p[0], p[1],5);
     }
+
     /**
      * setMyPoint
      * Setta il point nel tavolo e registra la mossa come mossa amica
@@ -186,7 +199,7 @@ public class Game {
      * Restituisce true se due punti sono uguali
      * @param a1 primo point
      * @param a2 secondo point
-     * @return true if points are equal
+     * @return true se i due punti sono uguali
      */
     public boolean ifEqualPoint(int[] a1, int[] a2){
         return (a1[0] == a2[0] && a1[1] == a2[1]);
@@ -195,6 +208,7 @@ public class Game {
     /**
      * showSetOfPoint
      * Mostra un insieme di punti
+     * @param setPoint insieme di punti
      */
     public static void showSetOfPoint(ArrayList<int[]> setPoint){
         for (int[] ints : setPoint) {
@@ -208,6 +222,8 @@ public class Game {
     /**
      * ifCorner
      * restituisce se è un corner o no
+     * @param point riga e colonna del punto da controllare
+     * @return ritorna true se è un angolo altrimenti false
      */
     public static boolean ifCorner(int[] point){
         int[][] corner_int = { {0, 0}, {0, 2}, {2, 0}, {2, 2} };
@@ -258,6 +274,7 @@ public class Game {
         }
         return free_corner;
     }
+
     /**
      * getFreeCentralZone
      * Questo metodo restituisce i punti non angoli non centro
@@ -295,6 +312,7 @@ public class Game {
     /**
      * getOppositeCorner
      * Questo metodo restituisce il corner opposto a un corner dato
+     * @param initialPoint angolo di cui ottenere l'opposto
      * @return il corner opposto
      */
     public int[] getOppositeCorner(int[] initialPoint){
@@ -313,6 +331,7 @@ public class Game {
     /**
      * getAdjacentFreePoint
      * Questo metodo restituisce i punti adiacenti a un punto liberi
+     * @param initialPoint punto di cui ottenere l'adiacente libero
      * @return l'insieme dei free point
      */
     public ArrayList<int[]> getAdjacentFreePoint(int[] initialPoint){
@@ -330,6 +349,7 @@ public class Game {
     /**
      * getAdjacentFreeCorner
      * Questo metodo restituisce il primo corner adiacente libero
+     * @param initialPoint punto di cui ottenere il primo angolo adiacente libero
      * @return il primo corner adiacente libero
      */
     public int[] getAdjacentFreeCorner(int[] initialPoint){
@@ -344,7 +364,6 @@ public class Game {
         }
         return null;
     }
-
 
     /** ------------------------------------ Funzioni pilota mosse se parto io ------------------------------------ **/
 
@@ -411,7 +430,6 @@ public class Game {
             return new int[][]{ { 1, 2 }, new int[]{ 1, 1,} };
         }
     }
-
 
     /**
      * mossa2_0_PL
@@ -492,5 +510,4 @@ public class Game {
             return new int[][]{ {2, 1}, generateRandomPoint(good_corner) };
         }
     }
-
 }
