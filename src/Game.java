@@ -85,10 +85,6 @@ public class Game {
             case 4:
 
             case 5:
-
-            case 6:
-
-            case 7:
                 pwm = this.table.winningMove(); //possibile winning move
                 if(pwm!=null){return pwm; }
                 plm = this.table.losingMove();  //possible losing move
@@ -99,7 +95,7 @@ public class Game {
                 return finale;
 
             default:
-                System.out.println("NON CI SONO PIU");
+                System.out.println("NON CI SONO PIU MOSSE LA PARTITA E' FINITA");
                 return null;
         }
     }
@@ -153,11 +149,6 @@ public class Game {
 
             case 4:
 
-            case 5:
-
-            case 6:
-
-            case 7:
                 //Scanner
                 pwm = this.table.winningMove(); //possibile winning move
                 if(pwm!=null){ System.out.println("Ho trovato una mossa vincente"); return pwm;}
@@ -169,7 +160,7 @@ public class Game {
                 return finale;
 
             default:
-                System.out.println("NON CI SONO PIU");
+                System.out.println("NON CI SONO PIU MOSSE PARTITA FINITA");
                 return null;
         }
     }

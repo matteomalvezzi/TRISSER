@@ -136,7 +136,7 @@ public class Room {
 
         my_game.setEnemyPoint(enemy_move);
         int[] next_my_move = my_game.playGamePL(idx_game, enemy_move);
-        my_game.setMyPoint(next_my_move);
+        if(next_my_move!=null){ my_game.setMyPoint(next_my_move); }
         return next_my_move;
 
     }
@@ -147,18 +147,20 @@ public class Room {
      * @param point punto da convertire in numero
      * **/
     public static int convertLocalCoordinateToNumber(int[] point){
-        int r = point[0];
-        int c = point[1];
+        if(point!=null){
+            int r = point[0];
+            int c = point[1];
 
-        int idx = 1;
-        for(int i = 0; i < 3; i++ ){
+            int idx = 1;
+            for(int i = 0; i < 3; i++ ){
 
-            for(int j = 0; j < 3; j++){
+                for(int j = 0; j < 3; j++){
 
-                if(i == r && j == c ){ return idx; }
-                idx++;
+                    if(i == r && j == c ){ return idx; }
+                    idx++;
+                }
+
             }
-
         }
         return -1;
     }

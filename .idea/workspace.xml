@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fb83e93-199c-41bc-8984-96f44c2b0cc3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/org.eclipse.paho.client.mqttv3-1.2.4.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_eclipse_paho_client_mqttv3_1_2_5.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PublishMove.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Algoritmo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Algoritmo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/org.eclipse.paho.client.mqttv3-1.2.5.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OnlineGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OnlineGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Room.java" afterDir="false" />
     </list>
@@ -143,7 +139,8 @@
       <workItem from="1646664919224" duration="3195000" />
       <workItem from="1646674866825" duration="785000" />
       <workItem from="1646731978922" duration="8285000" />
-      <workItem from="1646759169712" duration="14848000" />
+      <workItem from="1646759169712" duration="15302000" />
+      <workItem from="1646895618211" duration="7545000" />
     </task>
     <servers />
   </component>
