@@ -152,8 +152,8 @@ public class OnlineGame {
                                 }
                             }
                         }
+                        Log.i("messageArrived", "Inizializzazione delle partite dove partiamo noi completata");
                     }
-                    Log.i("messageArrived", "Inizializzazione delle partite dove partiamo noi completata");
 
                 }else if(topic_list.contains(room_name)){
 
