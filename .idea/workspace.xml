@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fb83e93-199c-41bc-8984-96f44c2b0cc3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OnlineGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OnlineGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +143,10 @@
       <workItem from="1646759169712" duration="15302000" />
       <workItem from="1646895618211" duration="7618000" />
       <workItem from="1646922345913" duration="7015000" />
-      <workItem from="1646982564104" duration="3068000" />
+      <workItem from="1646982564104" duration="3356000" />
+      <workItem from="1646992496673" duration="19000" />
+      <workItem from="1647351715845" duration="518000" />
+      <workItem from="1647353037159" duration="901000" />
     </task>
     <servers />
   </component>

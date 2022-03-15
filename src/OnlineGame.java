@@ -45,8 +45,8 @@ public class OnlineGame {
 
     /** ---- Connect to Mqtt Server Broker attributes  ---- **/
 
-    public static final String BROKER_HOST = "tcp://192.168.67.64:1883";
-    public static final String PUBLISHER_ID = "127.0.128.1";
+    public String BROKER_HOST;
+    public String PUBLISHER_ID;
 
     public String username_client;
     public String password_client;
@@ -59,10 +59,14 @@ public class OnlineGame {
     public int n_room;
     public ArrayList<Room> rooms;
 
-    public OnlineGame() {
+    public OnlineGame(String broker_ip, String publisher_id) {
 
+        //Set information about broker
+        this.BROKER_HOST = broker_ip;
+        this.PUBLISHER_ID = publisher_id;
+
+        //Initialize topic_name_list and list of room
         topic_list = new ArrayList<>();
-
         rooms = new ArrayList<>();
 
         try{
@@ -364,7 +368,7 @@ public class OnlineGame {
     public MqttClient connectToServer(String username, String passwd) {
         try {
             MemoryPersistence persistence = new MemoryPersistence();
-            MqttClient my_client = new MqttClient(BROKER_HOST, PUBLISHER_ID, persistence);
+            MqttClient my_client = new MqttClient(this.BROKER_HOST, this.PUBLISHER_ID, persistence);
             MqttConnectOptions connOpts = new MqttConnectOptions();
             connOpts.setCleanSession(true);
             connOpts.setConnectionTimeout(60);
@@ -379,7 +383,7 @@ public class OnlineGame {
             my_client.connect(connOpts);
             my_client.setTimeToWait(-1);
 
-            Log.d("connectToServer", "Il broker ( "+ BROKER_HOST +" ) ha accettato la nostra connessione ( PubID = "+PUBLISHER_ID+" ) con protocollo MQTT_VERSION_3_1");
+            Log.d("connectToServer", "Il broker ( "+ this.BROKER_HOST +" ) ha accettato la nostra connessione ( PubID = " + this.PUBLISHER_ID + " ) con protocollo MQTT_VERSION_3_1");
             return my_client;
         } catch (MqttException e) {
             e.printStackTrace();
