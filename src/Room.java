@@ -1,28 +1,31 @@
 import java.util.ArrayList;
 import java.util.Objects;
 
-
+/**
+ * Room
+ * La classe si occupa della gestione delle stanze in cui verranno svolte le partite
+ * @author Matteo Malvezzi, Alessandro Verlanti
+ * @see OnlineGame
+ * **/
 public class Room {
 
     /** ------------------------------------ Attributes ------------------------------------ **/
 
-    /**
-     * Attributi
-     * <h2><strong>nome_stanza</strong></h2> contiene il nome della stanza con la seguente formattazione "email1_email2"
-     * <h2><strong>games</strong></h2> Arraylist che contiene tutti i game ovvero tutte le partite. L'indice del game corrisponde proprio al numero del topic
-     * ES: il game in indice 10 corrisponde alla partita in topic <i>"email1_email2/10/"</i>
-     * **/
+    /** <strong>nome_stanza</strong> contiene il nome della stanza con la seguente formattazione "email1_email2" **/
     String nome_stanza;
+    /** <strong>games</strong> Arraylist che contiene tutti i game ovvero tutte le partite. L'indice del game corrisponde proprio al numero della topic
+        ES: il game in indice 10 corrisponde alla partita in topic <i>"email1_email2/10/"</i> **/
     ArrayList<Game> games;
-
+    /** <strong>me</strong> variabile che rappresenta la mail del nostro bot **/
     String me;
+    /** <strong>enemy</strong> variabile che rappresenta la mail del bot nemico **/
     String enemy;
 
     /** ------------------------------------ Constructor ------------------------------------ **/
 
     /**
-     * <h3>Costruttore</h3>
-     * Il costruttore si occupa di inizializzare i N game e di capire in quali game parto io e quali non parto io,
+     * Costruttore
+     * Il costruttore si occupa di inizializzare gli N game e di capire in quali game parto io e quali non parto io,
      * una volta chiuso il costruttore si farà "l'action immediato" dei game dove parto io
      * **/
     public Room(String nome_stanza, int partite_per_stanza) {
@@ -57,7 +60,7 @@ public class Room {
     /** ------------------------------------ Room Methods ------------------------------------ **/
 
     /**
-     * <h2>action</h2>
+     * action
      * Questo è il metodo principale che permette al nostro algoritmo di interfacciarsi con il server.
      * Questo metodo si occupa di restituire il punto da inviare direttamente al server.
      * Il metodo ha bisogno dell'indice del game [che verrà preso dal numero della topic] e della mossa avversaria, che verrà letta dalla topic avversaria

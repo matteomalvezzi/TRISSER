@@ -14,8 +14,8 @@ import javax.mail.*;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.search.FlagTerm;
 
-
 /**
+ * OnlineGame
  * LE FUNZIONALITA DI QUESTA CLASSE
  * Mi connetto al mail server per estrarre la mail
  * Leggo la MAIL, Da qui capisco, username, passw, topic in cui giocherò {riempio la topic list} ecc...
@@ -24,7 +24,7 @@ import javax.mail.search.FlagTerm;
  * Controllo il topic broadcast per capire quando starta la partita e se c'è gente offline {da togliere dalla topic list}
  * Mi iscrivo alle topic della topic list
  *
- * @author Matteo Malvezzi, Alessandro Verlanti
+ * @author Matteo Malvezzi
  * @see Main
  * @see Game
  * @see Tavolo
@@ -33,32 +33,56 @@ public class OnlineGame {
 
     /** ---- Mqtt client object  ---- **/
 
+    /** <strong>current_client</strong> contiene l'MqttClient corrente **/
     public MqttClient current_client;
+    /** <strong>current_callback</strong> contiene l'MqttCallback corrente **/
     public MqttCallback current_callback;
 
     /** ---- Connect to IMAP Server to read email and spec attributes  ---- **/
 
+    /** <strong>EMAIL</strong> contiene la mail del nostro bot **/
     public static final String EMAIL = "TRISSER.bot3@gmail.com";
+    /** <strong>PASSWD_EMAIL</strong> contiene la password della mail del nostro bot **/
     public static final String PASSWD_EMAIL = "Einaudi123";
+    /** <strong>MAIL_SERVER</strong> contiene l'indirizzo del mail server **/
     public static final String MAIL_SERVER = "imap.gmail.com";
+    /** <strong>MAIL_PROTOCOL</strong> contiene il protocollo di comunicazione utilizzato dal mail server **/
     public static final String MAIL_PROTOCOL = "imaps";
 
     /** ---- Connect to Mqtt Server Broker attributes  ---- **/
 
+    /** <strong>BROKER_HOST</strong> contiene l'indirizzo ip del broker **/
     public String BROKER_HOST;
+    /** <strong>PUBLISHER_ID</strong> contiene l'indirizzo ip del publisher **/
     public String PUBLISHER_ID;
 
+    /** <strong>username_client</strong> contiene l'username del nostro client **/
     public String username_client;
+    /** <strong>password_client</strong> contiene la password del nostro client **/
     public String password_client;
+    /** <strong>topic_list</strong> contiene la lista di topic a cui sarà necessario iscriversi **/
     public ArrayList<String> topic_list;
+    /** <strong>game_date</strong> contiene la data di gioco della partita, che verrà estrapolata dalla mail ricevuta dal server **/
     public String game_date;
 
     /** ---- data about rooms of this client  ---- **/
 
+    /** <strong>n_match_for_room</strong> contiene il numero di partite per stanza **/
     public int n_match_for_room;
+    /** <strong>n_room</strong> contiene il numero di stanze **/
     public int n_room;
+    /** <strong>rooms</strong> contiene l'insieme delle stanze **/
     public ArrayList<Room> rooms;
 
+    /**
+     * Costruttore
+     * Si occupa di:
+     * connettersi al mail-server ed estrarre il contenuto della mail ricevuta dal server che contiene le relative regole di gioco
+     * leggere la mail
+     * creare il l'MqttClient e connettersi
+     * andare online
+     * iscriversi alle topic
+     * **/
     public OnlineGame(String broker_ip, String publisher_id) {
 
         //Set information about broker

@@ -1,21 +1,27 @@
 import java.security.InvalidParameterException;
 
+/**
+ * Tavolo
+ * Questa classe tavolo si occupa principalmente della gestione del tavolo di gioco,
+ * inoltre, contiene i metodi relativi agli scanner delle mosse vincenti e bloccanti
+ * applicati su righe, colonne, e le due diagonali
+ * @author Matteo Malvezzi, Alessandro Verlanti
+ * @see Game
+ * **/
 public class Tavolo {
 
     /** ------------------------------------ Attributes ------------------------------------ **/
 
-    /**
-     * Attributi
-     * <h2><strong>N_C</strong></h2> contiene il numero di celle della matrice table
-     * <h2><strong>table</strong></h2> matrice che rappresenta il tavolo di gioco
-     * **/
-    public static final int N_C = 3; // cells number
+
+    /** <strong>N_C</strong> contiene il numero di celle della matrice table **/
+    public static final int N_C = 3;
+    /** <strong>table</strong> matrice che rappresenta il tavolo di gioco **/
     private int[][] table;
 
     /** ------------------------------------ Constructor ------------------------------------ **/
 
     /**
-     * <h3>Costruttore</h3>
+     * Costruttore
      * Il costruttore si occupa di inizializzare ad 1 tutte le celle del tavolo di gioco
      * **/
     public Tavolo() {

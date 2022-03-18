@@ -1,5 +1,14 @@
 import java.util.Scanner;
 
+/**
+ * Main
+ * Questa classe si occupa di permettere l'inserimento dell'IP del broker e il publisher ID
+ * creare l'oggetto OnlineGame
+ * settare la Callback
+ * @author Matteo Malvezzi, Alessandro Verlanti
+ * @see OnlineGame
+ * @see Log
+ **/
 public class Main {
 
     public static void main(String[] args) {

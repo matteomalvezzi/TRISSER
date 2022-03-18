@@ -3,8 +3,9 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 /**
+ * PublishMove
  * PublishMove extends Thread
- * classe che si occupa di creare un thread per pubblicare sulle topic
+ * Questa classe si occupa di creare un thread per pubblicare sulle topic
  * il metodo publish necessita di un Thread separato per problemi alla libreria PAHO
  * che nel caso in cui vengano fatte troppe pubblicazioni contemporaneamente egli si blocca
  * @author Matteo Malvezzi
@@ -14,20 +15,23 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
  * **/
 public class PublishMove extends Thread{
 
-    /** -------------------- Attributi -------------------- */
+    /** -------------------- Attributes -------------------- */
 
 
-    /** <h2><strong>return topic</strong></h2> topic su cui pubblicare **/
+    /** <strong>return topic</strong> topic su cui pubblicare **/
     public String rt;
-    /** <h2><strong>return message</strong></h2> topic su cui returnare il messaggio **/
+    /** <strong>return message</strong> topic su cui returnare il messaggio **/
     public MqttMessage rm;
 
-    /** <h2><strong>mqtt client</strong></h2> client su cui pubblicare il messsaggio **/
+    /** <strong>mqtt client</strong> client su cui pubblicare il messsaggio **/
     public MqttClient mc;
 
-    /** -------------------- Costruttore --------------------
+    /** -------------------- Constructor -------------------- **/
+
+    /**
+     * Costruttore
      * Si occupa di inizializzare i 3 parametri
-     * */
+     * **/
     public PublishMove(String return_topic, MqttMessage return_mqtt_message, MqttClient return_mqtt_client) {
         this.mc = return_mqtt_client;
         this.rt = return_topic;

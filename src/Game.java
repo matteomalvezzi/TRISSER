@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-
 /**
  * Citazione di Verla IMPORTANTE
  * Tutte le strade non portano a roma portano a new int[][]{2, 2}
  **/
 
 /**
+ * Game
  * LE FUNZIONALITA DI QUESTA CLASSE
  * Gestisco il Game:
  *  -Gestisco il tavolo
@@ -19,33 +19,30 @@ import java.util.Random;
  *
  * @author Matteo Malvezzi, Alessandro Verlanti
  * @see Tavolo
+ * @see Room
  * **/
 public class Game {
 
     /** ------------------------------------ Attributes ------------------------------------ **/
 
-    /**
-     * Attributi
-     * <h2><strong>table</strong></h2> tavolo di gioco
-     * <h2><strong>enemy_move</strong></h2> Arraylist che si occupa di memorizzare le mosse avversarie
-     * <h2><strong>my_move</strong></h2> Arraylist che si occupa di memorizzare le nostre mosse
-     * <h2><strong>whoStart</strong></h2> indica chi sarà il primo bot ad eseguire la mossa
-     * <h2><strong>myMosseCounter</strong></h2> memorizza la quantità di mosse eseguite
-     * **/
+    /** <strong>table</strong> tavolo di gioco **/
     public Tavolo table;
+    /** <strong>enemy_move</strong> Arraylist che si occupa di memorizzare le mosse avversarie **/
     public ArrayList<int[]> enemy_move;
+    /** <strong>my_move</strong> Arraylist che si occupa di memorizzare le nostre mosse **/
     public ArrayList<int[]> my_move;
+    /** <strong>whoStart</strong> indica chi sarà il primo bot ad eseguire la mossa **/
     public boolean whoStart; //true parto io false parte lui
+    /** <strong>myMosseCounter</strong> memorizza la quantità di mosse eseguite **/
     public int myMosseCounter;
 
-    /** nextGerarchy indica la prossima gerarchia da seguire (utile per stabilire la direzione da percorrere per eseguire la prossima mossa) **/
-
-    int ng;
+    /** <strong>ng</strong> indica la prossima gerarchia da seguire (utile per stabilire la direzione da percorrere per eseguire la prossima mossa) **/
+    int ng; // nextGerarchy
 
     /** ------------------------------------ Constructor ------------------------------------ **/
 
     /**
-     * Game
+     * Costruttore
      * Il costruttore si occupa di inserire il tavolo corrente del Game
      * @param current_table il tavolo precedentemente creato
      * @param wS flag WhoStart, se true partiamo noi se false partono loro
