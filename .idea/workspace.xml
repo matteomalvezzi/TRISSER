@@ -7,11 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fb83e93-199c-41bc-8984-96f44c2b0cc3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OnlineGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OnlineGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PublishMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PublishMove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Room.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -161,6 +158,7 @@
       <workItem from="1647587270915" duration="2411000" />
       <workItem from="1647590851993" duration="1498000" />
       <workItem from="1647673686963" duration="1764000" />
+      <workItem from="1647675478195" duration="740000" />
     </task>
     <servers />
   </component>

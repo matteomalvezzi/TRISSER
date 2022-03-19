@@ -8,15 +8,16 @@ import java.util.Random;
  **/
 
 /**
- * Game
- * LE FUNZIONALITA DI QUESTA CLASSE
- * Gestisco il Game:
- *  -Gestisco il tavolo
- *  -Calcolo le mosse vincenti
- *  -registroPRENDO LA MAIL le mosse nemiche e le mie mosse
- *  -piloto le mosse
- *  -Calcolo di possibili mosse bloccanti o vincenti
- *
+ * <strong>LE FUNZIONALITA DI QUESTA CLASSE</strong><hr><br>
+ * <i>Gestisco il Game</i>
+ * <br>
+ * <ul>
+ * <li>Gestisco il tavolo</li>
+ * <li>Calcolo le mosse vincenti</li>
+ * <li>registroPRENDO LA MAIL le mosse nemiche e le mie mosse</li>
+ * <li>piloto le mosse</li>
+ * <li>Calcolo di possibili mosse bloccanti o vincenti</li>
+ * </ul>
  * @author Matteo Malvezzi, Alessandro Verlanti
  * @see Tavolo
  * @see Room

@@ -124,6 +124,7 @@ public class Room {
      * @param my_game il game su cui fare la mossa
      * @param idx_game l'indice a cui è il game. Ogni passaggio di indice corrisponde ad un invio di una mossa
      * @param enemy_move la mossa avversaria (Nel caso in cui partiamo noi l'indice è 1 e la mossa avversaria è null)
+     * @return return della mossa da inviare
      * @see Game
      * **/
     public int[] doGamePN(Game my_game, int idx_game, int[] enemy_move){
@@ -145,6 +146,7 @@ public class Room {
      * @param my_game il game su cui fare la mossa
      * @param idx_game l'indice a cui è il game. Ogni passaggio di indice corrisponde ad un invio di una mossa
      * @param enemy_move la mossa avversaria (Nel caso in cui partiamo noi l'indice è 1 e la mossa avversaria è null)
+     * @return return della mossa da inviare
      * @see Game
      * **/
     public int[] doGamePL(Game my_game, int idx_game, int[] enemy_move){
