@@ -1,5 +1,4 @@
 /**
- * Log
  * Questa classe si occupa di fornire i metodi di log necessari alla visualizzazione di ogni tipologia di informazione
  * in modo leggibile ed ordinato tramite l'utilizzo di colori che vengono assegnati a seconda del tipo di messaggio ricevuto
  * @author Matteo Malvezzi

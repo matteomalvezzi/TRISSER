@@ -15,14 +15,17 @@ import javax.mail.internet.MimeMultipart;
 import javax.mail.search.FlagTerm;
 
 /**
- * OnlineGame
- * LE FUNZIONALITA DI QUESTA CLASSE
- * Mi connetto al mail server per estrarre la mail
- * Leggo la MAIL, Da qui capisco, username, passw, topic in cui giocherò {riempio la topic list} ecc...
- * Apro il client mqtt e mi connetto
- * Vado online
- * Controllo il topic broadcast per capire quando starta la partita e se c'è gente offline {da togliere dalla topic list}
- * Mi iscrivo alle topic della topic list
+ * <strong>LE FUNZIONALITA DI QUESTA CLASSE</strong><hr><br>
+ * <i>Gestisco il Game</i>
+ * <br>
+ * <ul>
+ * <li>Mi connetto al mail server per estrarre la mail</li>
+ * <li>Leggo la MAIL, Da qui capisco, username, passw, topic in cui giocherò {riempio la topic list}</li>
+ * <li>Apro il client mqtt e mi connetto</li>
+ * <li>Vado online</li>
+ * <li>Controllo il topic broadcast per capire quando starta la partita e se c'è gente offline {da togliere dalla topic list}</li>
+ * <li>Mi iscrivo alle topic della topic list</li>
+ * </ul>
  *
  * @author Matteo Malvezzi
  * @see Main

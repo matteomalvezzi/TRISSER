@@ -1,7 +1,6 @@
 import java.security.InvalidParameterException;
 
 /**
- * Tavolo
  * Questa classe tavolo si occupa principalmente della gestione del tavolo di gioco,
  * inoltre, contiene i metodi relativi agli scanner delle mosse vincenti e bloccanti
  * applicati su righe, colonne, e le due diagonali

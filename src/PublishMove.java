@@ -3,8 +3,6 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 /**
- * PublishMove
- * PublishMove extends Thread
  * Questa classe si occupa di creare un thread per pubblicare sulle topic
  * il metodo publish necessita di un Thread separato per problemi alla libreria PAHO
  * che nel caso in cui vengano fatte troppe pubblicazioni contemporaneamente egli si blocca
