@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TRISSER:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TRISSER_jar</output-path>
+    <root id="archive" name="Algoritmo.jar">
+      <element id="module-output" name="Algoritmo" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/json-simple-1.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/javax.mail-1.6.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jsoup-1.14.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/javax.activation-1.2.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/org.eclipse.paho.client.mqttv3-1.2.4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

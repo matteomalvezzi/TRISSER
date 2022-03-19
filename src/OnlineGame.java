@@ -82,6 +82,8 @@ public class OnlineGame {
      * creare il l'MqttClient e connettersi
      * andare online
      * iscriversi alle topic
+     * @param broker_ip ip del broker mqtt
+     * @param publisher_id id del client mqtt (id del pubblicatore)
      * **/
     public OnlineGame(String broker_ip, String publisher_id) {
 
@@ -282,6 +284,7 @@ public class OnlineGame {
      * Metodi per la lettura del contenuto html di una mail
      * @param msg Messaggio contenuto nella mail [body della mail]
      * @return Returna il contenuto del messaggio in una stringa
+     * @throws Exception eccezione da gestire per il get del contenuto della mail
      * **/
     public String getMailContent(Message msg) throws Exception {
         String result = "";
@@ -294,6 +297,13 @@ public class OnlineGame {
         return result;
     }
 
+    /**
+     * getTextFromMimeMultipart
+     * Metodi per la lettura del contenuto html di una mail
+     * @param mimeMultipart contenuto MIME della mail
+     * @return Contenuto della mail in formato plain text e non in HTML
+     * @throws Exception eccezione estrazione contenuto mail
+     * **/
     private String getTextFromMimeMultipart( MimeMultipart mimeMultipart)  throws Exception{
         String result = "";
         int count = mimeMultipart.getCount();
@@ -316,6 +326,7 @@ public class OnlineGame {
      * connectToMailServer
      * legge la mail e ne estrapola i dati
      * @return il messaggio in chiaro del contenuto della mail
+     * @throws Exception eccezione derivante dalla fallita connessione al mail server
      * **/
     public String connectToMailServer() throws Exception {
         // create properties
@@ -385,10 +396,10 @@ public class OnlineGame {
     /**
      * connectToServer
      * metodo che mi connette con il broker Mqtt dato username e password
-     * TODO Per ora username e password non sono ancora usati. Da scommentare nel caso in cui se ne faccia uso
      * @param username username per connettersi al broker
      * @param passwd password per connettersi al broker
      * **/
+    //TODO Per ora username e password non sono ancora usati. Da scommentare nel caso in cui se ne faccia uso
     public MqttClient connectToServer(String username, String passwd) {
         try {
             MemoryPersistence persistence = new MemoryPersistence();
@@ -477,6 +488,7 @@ public class OnlineGame {
      * @param game_idx nome del game (SUB-TOPIC)
      * @param my_topic nome giocatore su cui pubblicare la topic [ovvero noi] (SUB-SUB-TOPIC)
      * @param current_client client su cui pubblicare la mossa
+     * @param my_move la mossa da pubblicare
      * @see PublishMove
      * **/
     public void sendMove(String room_name, int game_idx, String my_topic, int my_move, MqttClient current_client){

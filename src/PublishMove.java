@@ -31,6 +31,9 @@ public class PublishMove extends Thread{
     /**
      * Costruttore
      * Si occupa di inizializzare i 3 parametri
+     * @param return_topic la topic su cui inviare il messaggio
+     * @param return_mqtt_message messaggio sottoforma di oggetto Mqtt da inviare
+     * @param return_mqtt_client client su cui returnare il messaggio
      * **/
     public PublishMove(String return_topic, MqttMessage return_mqtt_message, MqttClient return_mqtt_client) {
         this.mc = return_mqtt_client;

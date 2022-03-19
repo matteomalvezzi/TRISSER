@@ -27,6 +27,8 @@ public class Room {
      * Costruttore
      * Il costruttore si occupa di inizializzare gli N game e di capire in quali game parto io e quali non parto io,
      * una volta chiuso il costruttore si farà "l'action immediato" dei game dove parto io
+     * @param nome_stanza nome della stanza
+     * @param partite_per_stanza numero di partite per questa stanza
      * **/
     public Room(String nome_stanza, int partite_per_stanza) {
         this.nome_stanza = nome_stanza;
@@ -104,6 +106,7 @@ public class Room {
     /**
      * whoStart
      * metodo che controllando chi viene prima nel nome della stanza mi dice se parto io o no
+     * @param nome_stanza nome della stanza per controllare chi parte
      * @return ritorna True se parto io nei game pari e False se non parto io [e quindi partirò nei game dispari]
      * **/
     private boolean whoStart(String nome_stanza){
@@ -227,7 +230,9 @@ public class Room {
             cg.table.showRealTable();
         }
     }
-
+    /** Metodi per testare in local il bot, creando delle Game dove il bot intelligente gioca con un bot che gioca con mosse random
+     * @deprecated alla fine del progetto verranno rimossi
+     * **/
     public void testOfGamePL(){
         int[] ma;
         Tavolo t = new Tavolo();
