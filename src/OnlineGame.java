@@ -401,6 +401,7 @@ public class OnlineGame {
      * metodo che mi connette con il broker Mqtt dato username e password
      * @param username username per connettersi al broker
      * @param passwd password per connettersi al broker
+     * @return Client mqtt a cui ci siamo connessi
      * **/
     //TODO Per ora username e password non sono ancora usati. Da scommentare nel caso in cui se ne faccia uso
     public MqttClient connectToServer(String username, String passwd) {
@@ -433,6 +434,7 @@ public class OnlineGame {
      * goOnlineOnServer
      * metodo per "Andare OnLine": tale processo invia in una topic di broadcast un messaggio per segnalare al server la nostra attività
      * @param current_client client su cui andare online
+     * @return true se siamo andati online, false se ci sono eccezioni
      * **/
     public boolean goOnlineOnServer(MqttClient current_client){
         //go online
@@ -459,6 +461,7 @@ public class OnlineGame {
     /**
      * subscribeTopic
      * metodo per iscriversi alle topic affinché i messaggi arrivino nel metodo di callback massageArrived
+     * @return true se il subscribe è andato a buon fine, false se è fallito
      * **/
     public boolean subscribeTopic(){
         try {

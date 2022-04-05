@@ -161,7 +161,6 @@ public class Game {
                 if(plm!=null){return plm;}
 
                 next_move = mossa3_PL();
-                System.out.println("Eccomi in mossa 3 finalmente : " + next_move);
                 return next_move[1];
 
 
@@ -185,6 +184,7 @@ public class Game {
      * isFree
      * Controlla se una casella è libera
      * @param p punto di cui fare la verifica
+     * @return true if free, false if occupy
      * **/
     public boolean isFree(int[] p){
         int value = this.table.getPoint(p[0], p[1]);

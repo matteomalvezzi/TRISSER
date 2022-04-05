@@ -10,6 +10,10 @@ import java.util.Scanner;
  **/
 public class Main {
 
+    /**
+     * metodo main
+     * da questo metodo viene avviato il software. Si prendono le varie informazioni in input e si creano gli oggetti base
+     * **/
     public static void main(String[] args) {
 
         //Get param about mqtt Broker

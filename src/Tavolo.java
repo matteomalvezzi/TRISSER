@@ -264,7 +264,7 @@ public class Tavolo {
      * **/
     public int rowProduct(int r){
         int product = 1;
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < N_C; i++){
             int value_of_point = table[r][i];
             product*= value_of_point;
         }
@@ -279,7 +279,7 @@ public class Tavolo {
      * **/
     public int columnProduct(int c){
         int product = 1;
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < N_C; i++){
             int value_of_point = table[i][c];
             product*= value_of_point;
         }
