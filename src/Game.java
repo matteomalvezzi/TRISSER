@@ -151,9 +151,21 @@ public class Game {
                     default:
                         break;
                 }
-            /** ---- Risposta numero 3-4---- **/
+            /** ---- Risposta numero 3 ---- **/
             case 3:
 
+                //Scanner
+                pwm = this.table.winningMove(); //possibile winning move
+                if(pwm!=null){return pwm;}
+                plm = this.table.losingMove();  //possible losing move
+                if(plm!=null){return plm;}
+
+                next_move = mossa3_PL();
+                System.out.println("Eccomi in mossa 3 finalmente : " + next_move);
+                return next_move[1];
+
+
+            /** ---- Risposta numero 4 ---- **/
             case 4:
 
                 //Scanner
@@ -168,6 +180,16 @@ public class Game {
             default:
                 return null;
         }
+    }
+    /**
+     * isFree
+     * Controlla se una casella è libera
+     * @param p punto di cui fare la verifica
+     * **/
+    public boolean isFree(int[] p){
+        int value = this.table.getPoint(p[0], p[1]);
+        if(value == 1){ return true; }
+        else{ return false; }
     }
 
     /**
@@ -507,5 +529,31 @@ public class Game {
 
             return new int[][]{ {2, 1}, generateRandomPoint(good_corner) };
         }
+    }
+    /**
+     * mossa3_PL
+     * Pilotaggio mossa 3 nel caso in cui partono loro (Tale metodo parte se la prima mossa non è ne al centro ne in un angolo dato che siamo sotto alla terza gerarchia)
+     * @return il punto da mettere
+     */
+    public int[][] mossa3_PL(){
+
+        int prodotto_diagonale_1 = this.table.primaryDiagonalProduct();
+        int prodotto_diagonale_2 = this.table.secondaryDiagonalProduct();
+
+        if(prodotto_diagonale_1 ==15){
+            if( isFree(new int[]{0, 0}) ){
+                return new int[][]{ {3, 1}, new int[]{0, 0} };
+            }else if( isFree(new int[]{2, 2}) ){
+                return new int[][]{ {3, 1}, new int[]{2, 2} };
+            }
+        }
+        else if(prodotto_diagonale_2 == 15) {
+            if (isFree(new int[]{0, 2})) {
+                return new int[][]{{3, 1}, new int[]{0, 2}};
+            } else if (isFree(new int[]{2, 0})) {
+                return new int[][]{{3, 1}, new int[]{2, 0}};
+            }
+        }
+        return null;
     }
 }

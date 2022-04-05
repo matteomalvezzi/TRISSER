@@ -16,7 +16,7 @@ import javax.mail.search.FlagTerm;
 
 /**
  * <strong>LE FUNZIONALITA DI QUESTA CLASSE</strong><hr><br>
- * <i>Gestisco il Game</i>
+ * <i>Gestisco il game online con un broker mqtt secondo le API del SERVER</i>
  * <br>
  * <ul>
  * <li>Mi connetto al mail server per estrarre la mail</li>

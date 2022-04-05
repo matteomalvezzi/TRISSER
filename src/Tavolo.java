@@ -285,4 +285,30 @@ public class Tavolo {
         }
         return product;
     }
+
+    /**
+     * primaryDiagonalProduct
+     * Calcola il prodotto della prima diagonale quella che va da 0-0 a 2-2
+     * @return ritorna il prodotto della prima diagonale
+     * **/
+    public int primaryDiagonalProduct(){
+        int product = 1;
+        for(int i = 0; i < N_C; i++){
+            product*= table[i][i];
+        }
+        return product;
+    }
+
+    /**
+     * secondaryDiagonalProduct
+     * Calcola il prodotto della prima diagonale quella che va da 0-2 a 2-0
+     * @return ritorna il prodotto della seconda diagonale
+     * **/
+    public int secondaryDiagonalProduct(){
+        int product = 1;
+        for(int i = 0; i < N_C; i++){
+            product *= table[N_C-i-1][i];
+        }
+        return product;
+    }
 }
